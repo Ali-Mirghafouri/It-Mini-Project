@@ -9,8 +9,8 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      LogIn: false,
-      pageID: 0
+      LogIn: true,
+      pageID: 1
     };
   }
 
@@ -45,7 +45,7 @@ export default class App extends React.Component {
             width: "100%",
             height: "100%",
             padding: "0px",
-            margin: "0px"
+            margin: "0px",
           }}
         >
           <LogIn LogInCheck={this.LogInCheck.bind(this)} />
@@ -55,6 +55,10 @@ export default class App extends React.Component {
       return (
         <Box
         id="Root"
+        style={{
+          height:"100%",
+          backgroundColor:"#DCDCDC"
+        }}
         >
           <VerticalNav
             pageID={this.state.pageID}

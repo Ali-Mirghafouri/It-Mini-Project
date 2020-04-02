@@ -34,3 +34,33 @@ export const VerticalNavCardInfo = [
     logo: <ProfileIcon />
   }
 ];
+
+export const SubjectEnrolled = [
+  {
+    id: 0,
+    Subject: "DIP202",
+    SubjectName: "Business Communications",
+    Lecturer: "name",
+    Email: "email",
+    Lectures: ["l1", "l2", "l3"],
+    Toturial: ["t1", "t2", "t3"]
+  },
+  {
+    id: 1,
+    Subject: "DIP222",
+    SubjectName: "Programming Principles",
+    Lecturer: "name",
+    Email: "email",
+    Lectures: ["l1", "l2", "l3"],
+    Toturial: ["t1", "t2", "t3"]
+  },
+  {
+    id: 2,
+    Subject: "DIP1MPR01",
+    SubjectName: "IT Mini Project",
+    Lecturer: "YONG YIK LOONG",
+    Email: "yongyl@help.edu.my",
+    Lectures: ["l1", "l2", "l3"],
+    Toturial: ["t1", "t2", "t3"]
+  }
+];
