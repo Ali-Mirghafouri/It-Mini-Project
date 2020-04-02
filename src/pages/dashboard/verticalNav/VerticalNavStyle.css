@@ -1,0 +1,10 @@
+.drawerOpen {
+    background-Color: #524d4d;
+    height: 100%;
+    width: 109px;
+    padding-Top: 140px;
+    transition: width 1s;
+}
+.drawerOpen:hover {
+    width: 374px;
+}

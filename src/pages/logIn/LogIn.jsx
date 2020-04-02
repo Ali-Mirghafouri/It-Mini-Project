@@ -16,10 +16,8 @@ import HelpLogo from "../../assets/HelpLogo.png";
 
 export default class LogIn extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      
-    }
+    super(props);
+    this.state = {};
   }
   render() {
     return (
@@ -107,7 +105,13 @@ export default class LogIn extends React.Component {
               type="password"
               Licon={<PasswordLogo />}
             />
-            <Button ph="LOGIN" w="368px" h="107px" mb="16px" LogInCheck={this.props.LogInCheck} />
+            <Button
+              ph="LOGIN"
+              w="368px"
+              h="107px"
+              mb="16px"
+              LogInCheck={this.props.LogInCheck}
+            />
             <Typography style={{ color: "white" }}>Forgot Password?</Typography>
           </Box>
         </Box>

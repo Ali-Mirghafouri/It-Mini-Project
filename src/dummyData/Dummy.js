@@ -1,7 +1,6 @@
 import React from "react";
 import {
   HomeIcon,
-  SubjectEnrollmentIcon,
   EnrolledSubjectsIcon,
   GradesIcon,
   NewsAndEventsIcon,
@@ -16,26 +15,21 @@ export const VerticalNavCardInfo = [
   },
   {
     id: 1,
-    Option: "Subject Enrollment",
-    logo: <SubjectEnrollmentIcon />
-  },
-  {
-    id: 2,
     Option: "Enrolled Subjects",
     logo: <EnrolledSubjectsIcon />
   },
   {
-    id: 3,
+    id: 2,
     Option: "Grades",
     logo: <GradesIcon />
   },
   {
-    id: 4,
+    id: 3,
     Option: "News & Events",
     logo: <NewsAndEventsIcon />
   },
   {
-    id: 5,
+    id: 4,
     Option: "Profile",
     logo: <ProfileIcon />
   }

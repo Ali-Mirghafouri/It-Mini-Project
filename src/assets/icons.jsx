@@ -177,3 +177,21 @@ export const ProfileIcon = () => {
     </SvgIcon>
   );
 };
+
+export const LogOutIcon = () => {
+  return (
+    <SvgIcon
+      xmlns="http://www.w3.org/2000/svg"
+      width="27.105"
+      height="16.737"
+      viewBox="0 0 27.105 16.737"
+    >
+      <path
+        id="ic_keyboard_arrow_down_24px"
+        d="M9.185,7.84,19.552,18.185,29.92,7.84,33.1,11.025,19.552,24.577,6,11.025Z"
+        transform="translate(-6 -7.84)"
+        fill="#fff"
+      />
+    </SvgIcon>
+  );
+};
