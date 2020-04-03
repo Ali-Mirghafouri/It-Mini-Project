@@ -2,12 +2,21 @@ import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import SubjectsCard from "./SubjectCard";
 import { SubjectEnrolled } from "../../../dummyData/Dummy";
+import SubjectDetail from "./SubjectDetail";
 
 export default class Subjects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      AccessSubject: {},
+      AccessSubject: {
+        // id: null,
+        // Subject: null,
+        // SubjectName: null,
+        // Lecturer: null,
+        // Email: null,
+        // Lectures: null,
+        // Toturial: null
+      },
       showSubject: false
     };
   }
@@ -58,7 +67,11 @@ export default class Subjects extends React.Component {
         </Box>
       );
     } else {
-      return <Box></Box>;
+      return (
+        <Box>
+          <SubjectDetail AccessSubject={this.state.AccessSubject} />
+        </Box>
+      );
     }
   }
 }
