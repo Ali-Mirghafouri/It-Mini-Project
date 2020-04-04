@@ -195,3 +195,21 @@ export const LogOutIcon = () => {
     </SvgIcon>
   );
 };
+
+export const ListIcon = () => {
+  return (
+    <SvgIcon
+      xmlns="http://www.w3.org/2000/svg"
+      width="29.96"
+      height="18.5"
+      viewBox="0 0 29.96 18.5"
+    >
+      <path
+        id="ic_keyboard_arrow_down_24px"
+        d="M9.52,7.84,20.98,19.275,32.439,7.84l3.52,3.52L20.98,26.34,6,11.36Z"
+        transform="translate(-6 -7.84)"
+        fill="#fff"
+      />
+    </SvgIcon>
+  );
+};
