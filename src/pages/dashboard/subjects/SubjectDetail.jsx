@@ -38,7 +38,7 @@ componentDidMount() {
 
   render() {
     return (
-        <Box  >
+        <Box>
           <Box>
             <Typography style={{fontSize:"90px", fontWeight:"500px", textDecoration:"underline"}} >{this.props.AccessSubject.Subject}</Typography>
             <Typography style={{fontSize:"50px", fontWeight:"100px", textDecoration:"underline"}} >{this.props.AccessSubject.SubjectName}</Typography>

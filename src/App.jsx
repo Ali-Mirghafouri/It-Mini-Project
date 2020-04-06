@@ -10,7 +10,7 @@ export default class App extends React.Component {
     super();
     this.state = {
       LogIn: true,
-      pageID: 1
+      pageID: 0
     };
   }
 
@@ -60,11 +60,13 @@ export default class App extends React.Component {
           backgroundColor:"#DCDCDC"
         }}
         >
+          <Box>
           <VerticalNav
             pageID={this.state.pageID}
             changePageID={this.changePageID.bind(this)}
           />
-          <Box style={{marginLeft:"109px", marginTop:"115px"}} >
+          </Box>
+          <Box style={{marginLeft:"109px",paddingTop:"119px" }} >
           {this.DisplayPage()}
           </Box>
         </Box>

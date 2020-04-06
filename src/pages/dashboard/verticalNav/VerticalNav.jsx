@@ -36,6 +36,7 @@ export default class VerticalNav extends React.Component {
     return (
       <Box>
         <AppBar
+        display="block"
           position="fixed"
           style={{ zIndex: 10111, backgroundColor: "#540000" }}
         >
