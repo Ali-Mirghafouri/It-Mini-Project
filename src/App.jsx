@@ -25,7 +25,7 @@ export default class App extends React.Component {
 
   DisplayPage() {
     if (this.state.pageID === 0) {
-      return <CalenderPaje />;
+      return <CalenderPaje changePageID={this.changePageID.bind(this)} />;
     } else if (this.state.pageID === 1) {
       return <Subjects />;
     }

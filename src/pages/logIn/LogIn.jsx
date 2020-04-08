@@ -24,16 +24,16 @@ export default class LogIn extends React.Component {
       <Box
         style={{
           width: "100%",
-          height: "100%",
+          height: "200%",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <Box
           style={{
             width: "100%",
-            height: "100%",
+            height: "145.7%",
             backgroundImage: `url(${bg})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
@@ -61,7 +61,7 @@ export default class LogIn extends React.Component {
             alignItems: "center",
             justifyContent: "center",
             width: "505px",
-            height: "508px"
+            height: "508px",
           }}
         >
           <Box
@@ -69,7 +69,8 @@ export default class LogIn extends React.Component {
               zIndex: "100",
               display: "grid",
               alignContent: "center",
-              justifyItems: "center"
+              justifyItems: "center",
+              marginTop:"400px"
             }}
           >
             <Box

@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "@material-ui/core";
 import WeeklyCalender from "./WeeklyCalender";
 import Calender from "./Calender";
+import UpComingEvent from "./UpComingEvent"
 
 export default class CalenderPaje extends React.Component {
   constructor() {
@@ -15,8 +16,11 @@ export default class CalenderPaje extends React.Component {
         <Box style={{margin:"0px 10px"}} >
           <WeeklyCalender />
         </Box>
-        <Box style={{marginTop:"32px", marginLeft:"10px"}} >
+        <Box style={{marginTop:"32px", marginLeft:"10px", display:"flex", alignItems:"center", justifyContent:"center"}} >
           <Calender />
+          <Box style={{marginLeft:"37px"}} >  
+          <UpComingEvent changePageID={this.props.changePageID} />
+          </Box>
         </Box>
       </Box>
     );

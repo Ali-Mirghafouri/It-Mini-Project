@@ -127,3 +127,5 @@ export const WeeklySCH = [
     Class4Time: null,
   },
 ]
+
+export const Event = [1,10]
