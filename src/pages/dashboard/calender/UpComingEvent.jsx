@@ -7,8 +7,6 @@ export default class UpComingEvent extends React.Component {
     this.state = {};
   }
 
-  DisplayEvent() {}
-
   render() {
     return (
       <Box
