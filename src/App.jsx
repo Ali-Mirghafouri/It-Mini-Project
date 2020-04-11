@@ -12,9 +12,16 @@ export default class App extends React.Component {
     super();
     this.state = {
       LogIn: false,
-      pageID: 4
+      pageID: 4,
+      student: null
     };
   }
+
+handleStudent(inp) {
+  this.setState({
+    student: inp
+  })
+}
 
 initData(){
   const temp = []
@@ -26,7 +33,7 @@ initData(){
   }
     localStorage.clear()
     localStorage.setItem("userTable", JSON.stringify(temp))
-    console.log(localStorage.getItem("userTable"))
+    // console.log(localStorage.getItem("userTable"))
 }
 
 
@@ -37,9 +44,9 @@ initData(){
   changePageID(choice) {
     this.setState(
       {
-        pageID: choice
+        pageID: choice,
       },
-      () => console.log(this.state.pageID)
+      // () => console.log(this.state.pageID)
     );
   }
 
@@ -49,7 +56,7 @@ initData(){
     } else if (this.state.pageID === 1) {
       return <Subjects />;
     } else if (this.state.pageID === 4) {
-      return <ProfilePage />;
+      return <ProfilePage student={this.state.student} />;
     }
   }
 
@@ -70,7 +77,7 @@ initData(){
             margin: "0px",
           }}
         >
-          <LogIn LogInCheck={this.LogInCheck.bind(this)} />
+          <LogIn LogInCheck={this.LogInCheck.bind(this)} handleStudent={this.handleStudent.bind(this)} />
         </Box>
       );
     } else {

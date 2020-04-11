@@ -5,7 +5,7 @@ import Input from "../../componants/Input";
 import Button from "../../componants/Button";
 import { EmailLogo, PasswordLogo } from "../../assets/icons";
 import HelpLogo from "../../assets/HelpLogo.png";
-
+import { Students } from "../../initData";
 // w is for the width
 // h is for height
 // mb is for margin bottom
@@ -19,33 +19,62 @@ export default class LogIn extends React.Component {
     super(props);
     this.state = {
       SID: null,
-      pass: null
+      pass: null,
     };
   }
 
-handleSID(event){
-  const inp = event.target.value
-this.setState({
-  SID: inp
-})
-}
+  initData() {
+    // const temp = []
+    // for (let i = 0; i < Students.length; i++) {
+    //   temp.push({
+    //     studentId: logInInit[i].studentId,
+    //     password: logInInit[i].password
+    //   })
+    // }
+    // localStorage.clear()
+    localStorage.setItem("Students", JSON.stringify(Students));
+    console.log(localStorage.getItem("Students"));
+  }
 
-handlePass(event){
-  const inp = event.target.value
-this.setState({
-  pass: inp
-})
-}
+  handleSID(event) {
+    const inp = event.target.value;
+    this.setState({
+      SID: inp,
+    });
+  }
 
-  checkPass(){
-    const temp =  JSON.parse(localStorage.getItem("userTable"))
+  handlePass(event) {
+    const inp = event.target.value;
+    this.setState({
+      pass: inp,
+    });
+  }
+
+  checkPass() {
+    let student = "Student";
+    const temp = JSON.parse(localStorage.getItem("userTable"));
     for (let i = 0; i < temp.length; i++) {
-     if(temp[i].studentId === this.state.SID && temp[i].password === this.state.pass) {
-       this.props.LogInCheck()
-     }
+      if (
+        temp[i].studentId === this.state.SID &&
+        temp[i].password === this.state.pass
+      ) {
+        this.props.LogInCheck();
+        student = student + "b" + temp[i].studentId.slice(4, 8);
+        let id = temp[i].studentId;
+        console.log(Students[i]);
+        // this.initData()
+        for (let i = 0; i < Students.length; i++) {
+          if (id === Students[i].ID) {
+            localStorage.setItem(student, JSON.stringify(Students[i]));
+            // console.log(localStorage.getItem(student))
+            this.props.handleStudent(student)
+          }
+        }
+        // localStorage.setItem(student, JSON.stringify(Students.student))
+        // console.log(localStorage.getItem(student))
+      }
     }
   }
-  
 
   render() {
     return (
@@ -67,7 +96,7 @@ this.setState({
             backgroundSize: "cover",
             padding: "0px",
             margin: "0px",
-            position: "absolute"
+            position: "absolute",
           }}
         >
           <Box
@@ -79,7 +108,7 @@ this.setState({
               opacity: "54%",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
           />
         </Box>
@@ -98,13 +127,13 @@ this.setState({
               display: "grid",
               alignContent: "center",
               justifyItems: "center",
-              marginTop:"400px"
+              marginTop: "400px",
             }}
           >
             <Box
               style={{
                 width: "600px",
-                height: "300px"
+                height: "300px",
               }}
             >
               <Box
@@ -113,7 +142,7 @@ this.setState({
                   height: "100%",
                   backgroundImage: `url(${HelpLogo})`,
                   backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover"
+                  backgroundSize: "cover",
                 }}
               />
             </Box>
