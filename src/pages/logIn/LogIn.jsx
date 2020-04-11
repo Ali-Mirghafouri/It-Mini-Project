@@ -17,8 +17,36 @@ import HelpLogo from "../../assets/HelpLogo.png";
 export default class LogIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      SID: null,
+      pass: null
+    };
   }
+
+handleSID(event){
+  const inp = event.target.value
+this.setState({
+  SID: inp
+})
+}
+
+handlePass(event){
+  const inp = event.target.value
+this.setState({
+  pass: inp
+})
+}
+
+  checkPass(){
+    const temp =  JSON.parse(localStorage.getItem("userTable"))
+    for (let i = 0; i < temp.length; i++) {
+     if(temp[i].studentId === this.state.SID && temp[i].password === this.state.pass) {
+       this.props.LogInCheck()
+     }
+    }
+  }
+  
+
   render() {
     return (
       <Box
@@ -96,6 +124,7 @@ export default class LogIn extends React.Component {
               ph="Student ID"
               fsize="35px"
               Licon={<EmailLogo />}
+              handleSID={this.handleSID.bind(this)}
             />{" "}
             <Input
               w="505px"
@@ -105,13 +134,14 @@ export default class LogIn extends React.Component {
               fsize="35px"
               type="password"
               Licon={<PasswordLogo />}
+              handleSID={this.handlePass.bind(this)}
             />
             <Button
               ph="LOGIN"
               w="368px"
               h="107px"
               mb="16px"
-              LogInCheck={this.props.LogInCheck}
+              checkPass={this.checkPass.bind(this)}
             />
             <Typography style={{ color: "white" }}>Forgot Password?</Typography>
           </Box>

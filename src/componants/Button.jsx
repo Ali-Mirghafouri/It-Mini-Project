@@ -13,7 +13,7 @@ export default function Button(props) {
         fontSize: "35px",
         marginBottom: props.mb
       }}
-      onClick={() => props.LogInCheck()}
+      onClick={() => props.checkPass()}
     >
       {props.ph}
     </button>

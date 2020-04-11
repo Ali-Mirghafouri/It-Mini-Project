@@ -44,6 +44,7 @@ export default function Input(props) {
             color:"white",
             paddingLeft:"10px",
           }}
+          onChange={(e) => props.handleSID(e)}
           type={props.type}
           placeholder={props.ph}
         ></input>
