@@ -5,38 +5,54 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class CGPA extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      points: JSON.parse(localStorage.getItem(this.props.student)),
+      dataPoints: null
+    };
   }
 
-data() {
-    const temp =  JSON.parse(localStorage.getItem(this.props.student))
-    console.log(temp)
+
+pushdata() {
+  let dataPoints = []
+  for (var i = 0; i < this.state.points.CGPA.length; i++) {
+    // console.log(i)
+    dataPoints.push({
+      x: this.state.points.CGPA[i].x,
+      y: this.state.points.CGPA[i].y
+    });
+  }
+  this.setState({
+    dataPoints: dataPoints
+  })
+
 }
 
 componentDidMount() {
-    this.data()
+    this.pushdata()
 }
 
   render() {
     const options = {
-      title: {
-        text: "Basic Column Chart in React",
+			theme: "light2",
+			title: {
+				text: "Stock Price of NIFTY 50"
+			},
+			axisY: {
+        interval: 0.5,
+        maximum: 4
       },
-      data: [
-        {
-          type: "column",
-          dataPoints: [
-            { label: "Apple", y: 10 },
-            { label: "Orange", y: 15 },
-            { label: "Banana", y: 25 },
-            { label: "Mango", y: 30 },
-            { label: "Grape", y: 28 },
-          ],
-        },
-      ],
-    };
+      axisX: {
+				prefix:"sem ",
+				interval: 1
+			},
+			data: [{
+        type: "line",
+        
+				dataPoints: this.state.dataPoints
+			}]
+		}
     return <Box style={{width:"871px", height:"550px"}} >
         <CanvasJSChart options = {options}
             /* onRef = {ref => this.chart = ref} */

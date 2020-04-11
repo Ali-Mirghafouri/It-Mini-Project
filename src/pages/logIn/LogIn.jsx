@@ -64,7 +64,7 @@ export default class LogIn extends React.Component {
         console.log(Students[i]);
         // this.initData()
         for (let i = 0; i < Students.length; i++) {
-          if (id === Students[i].ID) {
+          if (id === Students[i].ID.toLowerCase()) {
             localStorage.setItem(student, JSON.stringify(Students[i]));
             // console.log(localStorage.getItem(student))
             this.props.handleStudent(student)

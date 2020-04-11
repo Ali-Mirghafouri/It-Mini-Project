@@ -7,7 +7,7 @@ export const logInInit = [
 export const Students = [
   {
     Name: "Seyed Mirghafouri",
-    ID: "b1801866",
+    ID: "B1801866",
     Course: "Diploma in Information Technology",
     Email: "ali.mirghafouri@gmail.com",
     PhoneNumber: "012-3456789",
@@ -19,8 +19,8 @@ export const Students = [
         DIP222: ["DIP222", "50%"],
       },
     ],
-    CourseProgress: "50%",
-    Attendence: "80%",
+    CourseProgress: [{ y: 50, indexLabel: "progressed" }],
+    Attendence: 80,
     CGPA: [
       //   {
       //     L1S1: 2.75,
@@ -47,7 +47,7 @@ export const Students = [
   },
   {
     Name: "Seyed Ali Mirghafouri",
-    ID: "b1801867",
+    ID: "B1801867",
     Course: "Diploma in Information Technology",
     Email: "ali.mirghafouri@gmail.com",
     PhoneNumber: "012-3456789",
@@ -59,8 +59,8 @@ export const Students = [
         DIP222: ["DIP222", "50%"],
       },
     ],
-    CourseProgress: "50%",
-    Attendence: "80%",
+    CourseProgress: [{ y: 50, indexLabel: "progressed" }, { y: 50, indexLabel: "not progressed" }],
+    Attendence: [{ y: 80, indexLabel: "present" }, { y: 20, indexLabel: "absent" }],
     CGPA: [
       //   {
       //     L1S1: 2.75,
@@ -82,6 +82,18 @@ export const Students = [
       {
         x: 3,
         y: 3.15,
+      },
+      {
+        x: 4,
+        y: NaN,
+      },
+      {
+        x: 5,
+        y: NaN,
+      },
+      {
+        x: 6,
+        y: NaN,
       },
     ],
   },
