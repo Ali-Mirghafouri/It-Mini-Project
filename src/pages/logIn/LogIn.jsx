@@ -1,11 +1,11 @@
-import React from "react";
-import bg from "../../assets/bg.png";
-import { Box, Typography } from "@material-ui/core";
-import Input from "../../componants/Input";
-import Button from "../../componants/Button";
-import { EmailLogo, PasswordLogo } from "../../assets/icons";
-import HelpLogo from "../../assets/HelpLogo.png";
-import { Students } from "../../initData";
+import React from "react"
+import bg from "../../assets/bg.png"
+import { Box, Typography } from "@material-ui/core"
+import Input from "../../componants/Input"
+import Button from "../../componants/Button"
+import { EmailLogo, PasswordLogo } from "../../assets/icons"
+import HelpLogo from "../../assets/HelpLogo.png"
+import { Students } from "../../initData"
 // w is for the width
 // h is for height
 // mb is for margin bottom
@@ -16,11 +16,11 @@ import { Students } from "../../initData";
 
 export default class LogIn extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       SID: null,
       pass: null,
-    };
+    }
   }
 
   initData() {
@@ -32,40 +32,39 @@ export default class LogIn extends React.Component {
     //   })
     // }
     // localStorage.clear()
-    localStorage.setItem("Students", JSON.stringify(Students));
-    console.log(localStorage.getItem("Students"));
+    localStorage.setItem("Students", JSON.stringify(Students))
+    console.log(localStorage.getItem("Students"))
   }
 
   handleSID(event) {
-    const inp = event.target.value;
+    let inp = event.target.value
+    inp = "b1801867" //DELETE THIS LINE
     this.setState({
       SID: inp,
-    });
+    })
   }
 
   handlePass(event) {
-    const inp = event.target.value;
+    let inp = event.target.value
+    inp = "123" //DELETE THIS LINE
     this.setState({
       pass: inp,
-    });
+    })
   }
 
   checkPass() {
-    let student = "Student";
-    const temp = JSON.parse(localStorage.getItem("userTable"));
+    let student = "Student"
+    const temp = JSON.parse(localStorage.getItem("userTable"))
     for (let i = 0; i < temp.length; i++) {
-      if (
-        temp[i].studentId === this.state.SID &&
-        temp[i].password === this.state.pass
-      ) {
-        this.props.LogInCheck();
-        student = student + "b" + temp[i].studentId.slice(4, 8);
-        let id = temp[i].studentId;
-        console.log(Students[i]);
+      if (temp[i].studentId === this.state.SID && temp[i].password === this.state.pass) {
+        this.props.LogInCheck()
+        student = student + "b" + temp[i].studentId.slice(4, 8)
+        let id = temp[i].studentId
+        console.log(Students[i])
         // this.initData()
         for (let i = 0; i < Students.length; i++) {
           if (id === Students[i].ID.toLowerCase()) {
-            localStorage.setItem(student, JSON.stringify(Students[i]));
+            localStorage.setItem(student, JSON.stringify(Students[i]))
             // console.log(localStorage.getItem(student))
             this.props.handleStudent(student)
           }
@@ -153,6 +152,7 @@ export default class LogIn extends React.Component {
               ph="Student ID"
               fsize="35px"
               Licon={<EmailLogo />}
+              value="b1801867"
               handleSID={this.handleSID.bind(this)}
             />{" "}
             <Input
@@ -162,6 +162,7 @@ export default class LogIn extends React.Component {
               ph="Password"
               fsize="35px"
               type="password"
+              value="123"
               Licon={<PasswordLogo />}
               handleSID={this.handlePass.bind(this)}
             />
@@ -176,6 +177,6 @@ export default class LogIn extends React.Component {
           </Box>
         </Box>
       </Box>
-    );
+    )
   }
 }

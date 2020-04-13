@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Typography } from "@material-ui/core";
+import React from "react"
+import { Box, Typography } from "@material-ui/core"
 
 export default function Input(props) {
   if (props.Licon !== undefined) {
@@ -22,34 +22,36 @@ export default function Input(props) {
             borderTopLeftRadius: "80px",
             borderBottomLeftRadius: "80px",
             backgroundColor: "black",
-            opacity:"55%",
+            opacity: "55%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Box><Typography style={{color: "white"}} >{props.Licon}</Typography></Box>
+          <Box>
+            <Typography style={{ color: "white" }}>{props.Licon}</Typography>
+          </Box>
         </Box>
         <input
           style={{
             width: "100%",
             height: "100%",
-            opacity:"62%",
+            opacity: "62%",
             backgroundColor: "black",
             fontSize: props.fsize,
             borderTopRightRadius: "80px",
             borderBottomRightRadius: "80px",
             padding: "0px",
             border: "1px solid white",
-            color:"white",
-            paddingLeft:"10px",
+            color: "white",
+            paddingLeft: "10px",
           }}
           onChange={(e) => props.handleSID(e)}
           type={props.type}
           placeholder={props.ph}
         ></input>
       </Box>
-    );
+    )
   }
   return (
     <input
@@ -60,9 +62,9 @@ export default function Input(props) {
         borderRadius: "80px",
         marginBottom: props.mb,
         fontSize: props.fsize,
-        padding: "0px"
+        padding: "0px",
       }}
       placeholder={props.ph}
     ></input>
-  );
+  )
 }

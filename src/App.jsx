@@ -1,41 +1,41 @@
-import React from "react";
-import LogIn from "./pages/logIn/LogIn";
-import { Box } from "@material-ui/core";
-import VerticalNav from "./pages/dashboard/verticalNav/VerticalNav";
-import CalenderPaje from "./pages/dashboard/calender/CalenderPaje";
-import Subjects from "./pages/dashboard/subjects/SubjectsPage";
+import React from "react"
+import LogIn from "./pages/logIn/LogIn"
+import { Box } from "@material-ui/core"
+import VerticalNav from "./pages/dashboard/verticalNav/VerticalNav"
+import CalenderPaje from "./pages/dashboard/calender/CalenderPaje"
+import Subjects from "./pages/dashboard/subjects/SubjectsPage"
 import ProfilePage from "./pages/dashboard/profile/ProfilePage"
-import {logInInit} from "./initData"
+import { logInInit } from "./initData"
+import CourseGrades from "./pages/GradePage/CourseGrades"
 
 export default class App extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
       LogIn: false,
-      pageID: 4,
-      student: null
-    };
+      pageID: 2,
+      student: null,
+    }
   }
 
-handleStudent(inp) {
-  this.setState({
-    student: inp
-  })
-}
-
-initData(){
-  const temp = []
-  for (let i = 0; i < logInInit.length; i++) {
-    temp.push({
-      studentId: logInInit[i].studentId,
-      password: logInInit[i].password
+  handleStudent(inp) {
+    this.setState({
+      student: inp,
     })
   }
+
+  initData() {
+    const temp = []
+    for (let i = 0; i < logInInit.length; i++) {
+      temp.push({
+        studentId: logInInit[i].studentId,
+        password: logInInit[i].password,
+      })
+    }
     localStorage.clear()
     localStorage.setItem("userTable", JSON.stringify(temp))
     // console.log(localStorage.getItem("userTable"))
-}
-
+  }
 
   componentDidMount() {
     this.initData()
@@ -45,25 +45,27 @@ initData(){
     this.setState(
       {
         pageID: choice,
-      },
+      }
       // () => console.log(this.state.pageID)
-    );
+    )
   }
 
   DisplayPage() {
     if (this.state.pageID === 0) {
-      return <CalenderPaje changePageID={this.changePageID.bind(this)} />;
+      return <CalenderPaje changePageID={this.changePageID.bind(this)} />
     } else if (this.state.pageID === 1) {
-      return <Subjects />;
+      return <Subjects />
+    } else if (this.state.pageID === 2) {
+      return <CourseGrades student={this.state.student} />
     } else if (this.state.pageID === 4) {
-      return <ProfilePage student={this.state.student} />;
+      return <ProfilePage student={this.state.student} />
     }
   }
 
   LogInCheck() {
     this.setState({
-      LogIn: true
-    });
+      LogIn: true,
+    })
   }
   render() {
     if (this.state.LogIn === false) {
@@ -77,29 +79,32 @@ initData(){
             margin: "0px",
           }}
         >
-          <LogIn LogInCheck={this.LogInCheck.bind(this)} handleStudent={this.handleStudent.bind(this)} />
+          <LogIn
+            LogInCheck={this.LogInCheck.bind(this)}
+            handleStudent={this.handleStudent.bind(this)}
+          />
         </Box>
-      );
+      )
     } else {
       return (
         <Box
-        id="Root"
-        style={{
-          height:"100%",
-          backgroundColor:"#DCDCDC"
-        }}
+          id="Root"
+          style={{
+            height: "100%",
+            backgroundColor: "#DCDCDC",
+          }}
         >
           <Box>
-          <VerticalNav
-            pageID={this.state.pageID}
-            changePageID={this.changePageID.bind(this)}
-          />
+            <VerticalNav
+              pageID={this.state.pageID}
+              changePageID={this.changePageID.bind(this)}
+            />
           </Box>
-          <Box style={{marginLeft:"109px",paddingTop:"119px" }} >
-          {this.DisplayPage()}
+          <Box style={{ marginLeft: "109px", paddingTop: "119px" }}>
+            {this.DisplayPage()}
           </Box>
         </Box>
-      );
+      )
     }
   }
 }
