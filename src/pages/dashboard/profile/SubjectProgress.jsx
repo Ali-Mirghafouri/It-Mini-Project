@@ -10,21 +10,37 @@ export default class SubjectProgress extends React.Component {
     };
   }
 
-  bars() {
+  bars(Subject, mark) {
     return (
       <Box
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          height: "35px",
-          justifyContent: "center",
-          alignItems: "center",
+          // justifyContent: "center",
+          // alignItems: "center",
         }}
-      > 
-        {this.state.student.subjects.map(({Subject, mark}) => (
-        <Box>
-          {console.log(Subject)}
-          <Typography style={{ fontSize: "35px" }}>{Subject}</Typography>
+      >
+        <Box
+          style={{
+            display: "grid",
+            gridTemplateRows: "80px",
+            // justifyContent: "center",
+            alignItems: "center",
+            marginRight:"50px"
+          }}
+        >
+          <Box style={{height:"cover"}} >
+            <Typography style={{ fontSize: "35px" }}>{Subject}</Typography>
+          </Box>
+        </Box>
+        <Box
+          style={{
+            display: "grid",
+            gridTemplateRows: "80px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <ProgressBar
             width="540px"
             height="30px"
@@ -36,12 +52,19 @@ export default class SubjectProgress extends React.Component {
             fontColor="black"
           />
         </Box>
-        ) )}
       </Box>
     );
   }
 
   render() {
-    return <Box style={{ height: "cover", width: "825px" }}>{this.bars()}</Box>;
+    return (
+      <Box style={{ height: "cover", width: "825px" }}>
+        <Box>
+          {this.state.student.subjects.map(({ Subject, mark }) =>
+            this.bars(Subject, mark)
+          )}
+        </Box>
+      </Box>
+    );
   }
 }
