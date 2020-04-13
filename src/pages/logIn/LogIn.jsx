@@ -55,7 +55,7 @@ export default class LogIn extends React.Component {
     const temp = JSON.parse(localStorage.getItem("userTable"));
     for (let i = 0; i < temp.length; i++) {
       if (
-        temp[i].studentId === this.state.SID &&
+        temp[i].studentId === this.state.SID.toLowerCase() &&
         temp[i].password === this.state.pass
       ) {
         this.props.LogInCheck();

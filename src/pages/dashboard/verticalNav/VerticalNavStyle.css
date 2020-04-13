@@ -3,7 +3,7 @@
     height: 100%;
     width: 109px;
     padding-Top: 140px;
-    transition: width 1s;
+    transition: width 0.3s;
 }
 .drawerOpen:hover {
     width: 374px;

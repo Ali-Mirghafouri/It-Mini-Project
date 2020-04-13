@@ -53,7 +53,7 @@ componentDidMount() {
 				dataPoints: this.state.dataPoints
 			}]
 		}
-    return <Box style={{width:"871px", height:"550px"}} >
+    return <Box style={{width:"871px", height:"400px"}} >
         <CanvasJSChart options = {options}
             /* onRef = {ref => this.chart = ref} */
         />
