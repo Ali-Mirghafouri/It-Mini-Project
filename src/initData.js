@@ -53,10 +53,20 @@ export const Students = [
     PhoneNumber: "012-3456789",
     subjects: [
       {
-        DIPMPR01: ["DIPMPR01", "75%"],
-        DIP202: ["DIP202", "45%"],
-        DIP204: ["DIP204", "80%"],
-        DIP222: ["DIP222", "50%"],
+        Subject:"DIPMPR01",
+        mark: "75",
+      },
+      {
+        Subject: "DIP202", 
+        mark: "69",
+      },
+      {
+        Subject: "DIP204",
+        mark: "80",
+      },
+      {
+        Subject: "DIP222", 
+        mark: "50",
       },
     ],
     CourseProgress: [{ y: 50, indexLabel: "progressed" }, { y: 50, indexLabel: "not progressed" }],

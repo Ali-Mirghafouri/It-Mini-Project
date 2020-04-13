@@ -16,7 +16,7 @@ export default class CourseProgress extends React.Component {
   pushdata() {
     let dataPoints = [];
     for (var i = 0; i < this.state.student.CourseProgress.length; i++) {
-      console.log(this.state.student);
+      // console.log(this.state.student);
       dataPoints.push({
         y: this.state.student.CourseProgress[i].y,
         indexLabel: this.state.student.CourseProgress[i].indexLabel,
@@ -26,7 +26,7 @@ export default class CourseProgress extends React.Component {
       {
         dataPoints: dataPoints,
       },
-      () => console.log(this.state.dataPoints)
+     
     );
   }
 

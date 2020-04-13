@@ -28,7 +28,7 @@ export default class ProfilePage extends React.Component {
         </Box>
         <Box display="flex"  >
           <SubjectProgress student={this.props.student} />
-        <Box>
+        <Box style={{width:"100%", display:"flex", alignItems:"flex-end", justifyContent:"flex-end", marginRight:"25px"}} >
           <CGPA student={this.props.student} />
         </Box>
         </Box>
