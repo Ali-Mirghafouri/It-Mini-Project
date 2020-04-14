@@ -23,9 +23,11 @@ export default class LogIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      users: JSON.parse(localStorage.getItem("userTable")),
       SID: null,
       pass: null,
-      Emailerr: true,
+      Emailerr: false,
+      Passerr: false,
     };
   }
 
@@ -42,6 +44,18 @@ export default class LogIn extends React.Component {
     } else {
       this.setState({
         Emailerr: true,
+      });
+    }
+  }
+
+  handlePasserr() {
+    if (this.state.Passerr === true) {
+      this.setState({
+        Passerr: false,
+      });
+    } else {
+      this.setState({
+        Passerr: true,
       });
     }
   }
@@ -64,8 +78,11 @@ export default class LogIn extends React.Component {
 
   checkPass() {
     let student = "Student";
+    let id = "";
     const temp = JSON.parse(localStorage.getItem("userTable"));
     for (let i = 0; i < temp.length; i++) {
+      // id = temp[i].studentId;
+      // pass = temp[i].password;
       if (
         temp[i].studentId === this.state.SID.toLowerCase() &&
         temp[i].password === this.state.pass
@@ -85,7 +102,22 @@ export default class LogIn extends React.Component {
         }
         // localStorage.setItem(student, JSON.stringify(Students.student))
         // console.log(localStorage.getItem(student))
+      } else {
+        if (temp[i].studentId === this.state.SID.toLowerCase()) {
+          id = true
+          this.setState({
+            Emailerr: false
+          })
+          // console.log(id)
+        }
+        if (temp[i].password !== this.state.pass && id === true) {
+          this.handlePasserr();
+        }
       }
+    }
+    if (id !== true) {
+      console.log(id)
+      this.handleEmailerr();
     }
   }
 
@@ -138,7 +170,7 @@ export default class LogIn extends React.Component {
             style={{
               zIndex: "100",
               display: "grid",
-              alignContent: "center",
+              alignContent: "start",
               justifyItems: "center",
               marginTop: "400px",
             }}
@@ -171,9 +203,15 @@ export default class LogIn extends React.Component {
             />{" "}
             <Collapse in={this.state.Emailerr}>
               <Alert
-                style={{ background: "inherit", color: "green" }}
+                severity="error"
+                style={{ background: "inherit", color: "red" }}
                 action={
-                  <IconButton aria-label="close" color="inherit" size="small">
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => this.handleEmailerr()}
+                  >
                     <CloseIcon fontSize="inherit" />
                   </IconButton>
                 }
@@ -184,7 +222,7 @@ export default class LogIn extends React.Component {
             <Input
               w="505px"
               h="105px"
-              mb="136px"
+              // mb="136px"
               ph="Password"
               fsize="35px"
               type="password"
@@ -192,11 +230,30 @@ export default class LogIn extends React.Component {
               Licon={<PasswordLogo />}
               handleSID={this.handlePass.bind(this)}
             />
+            <Collapse in={this.state.Passerr}>
+              <Alert
+                severity="error"
+                style={{ background: "inherit", color: "red", }}
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => this.handlePasserr()}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                Password is wrong!
+              </Alert>
+            </Collapse>
             <Button
               ph="LOGIN"
               w="368px"
               h="107px"
               mb="16px"
+              mt= "120px"
               checkPass={this.checkPass.bind(this)}
             />
             <Typography style={{ color: "white" }}>Forgot Password?</Typography>

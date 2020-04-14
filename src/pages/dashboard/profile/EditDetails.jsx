@@ -1,5 +1,9 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 export default class EditDetails extends React.Component {
   constructor(props) {
@@ -18,6 +22,10 @@ export default class EditDetails extends React.Component {
       currentPass: null,
       Users: users,
       changePass: [],
+      Emailerr: false,
+      PhoneNumbererr: false,
+      OldPassworderr: false,
+      NewPasserr: false
     };
   }
 
@@ -85,9 +93,62 @@ export default class EditDetails extends React.Component {
           "userTable",
           JSON.stringify(this.state.changePass)
         );
+        this.props.handleDisplayEditPage();
+      }
+      if (this.state.newPass === null) {
+        this.props.handleDisplayEditPage();
       }
 
-      this.props.handleDisplayEditPage();
+
+      
+    }
+    if (email === false) {
+      this.handleEmailerr();
+    }
+    if (phonenumber === false) {
+      this.handlePhoneNumbererr();
+    }
+    if (currpass === false) {
+      this.handleOldPassworderr()
+    }
+    if (newpass === false) {
+      this.handleNewPasserr()
+    }
+  }
+  
+  handlePhoneNumbererr() {
+    if (this.state.PhoneNumbererr === true) {
+      this.setState({
+        PhoneNumbererr: false,
+      });
+    } else {
+      this.setState({
+        PhoneNumbererr: true,
+      });
+    }
+  }
+
+  handleOldPassworderr() {
+    if (this.state.OldPassworderr === true) {
+      this.setState({
+        OldPassworderr: false,
+      });
+    } else {
+      this.setState({
+        OldPassworderr: true,
+      });
+    }
+  }
+
+  handleEmailerr() {
+    if (this.state.Emailerr === true) {
+      this.setState({
+        Emailerr: false,
+      });
+    } else {
+      this.setState({
+        Emailerr: true,
+      });
     }
   }
 
@@ -109,6 +170,18 @@ export default class EditDetails extends React.Component {
       },
       () => console.log(this.state.newPass)
     );
+  }
+
+  handleNewPasserr(){
+    if (this.state.NewPasserr === true) {
+      this.setState({
+        NewPasserr: false,
+      });
+    } else {
+      this.setState({
+        NewPasserr: true,
+      });
+    }
   }
 
   handleOldPass(event) {
@@ -159,6 +232,7 @@ export default class EditDetails extends React.Component {
     this.setState({
       phoneNumber: inp,
     });
+    console.log(this.state.submit[1]);
     if (inp.match(phoneno) && this.state.submit[1] !== true) {
       let Submit = this.state.submit;
       Submit.pop();
@@ -169,17 +243,17 @@ export default class EditDetails extends React.Component {
         },
         () => console.log("true  -------->  " + this.state.submit)
       );
-      if (inp.match(phoneno) === null && this.state.submit[1] === true) {
-        let Submit = this.state.submit;
-        Submit.pop();
-        Submit.push(false);
-        this.setState(
-          {
-            submit: Submit,
-          },
-          () => console.log("false  -------->  " + this.state.submit)
-        );
-      }
+    } else if (inp.match(phoneno) === null && this.state.submit[1] === true) {
+      console.log("here");
+      let Submit = this.state.submit;
+      Submit.pop();
+      Submit.push(false);
+      this.setState(
+        {
+          submit: Submit,
+        },
+        () => console.log("false  -------->  " + this.state.submit)
+      );
     }
   }
 
@@ -197,7 +271,9 @@ export default class EditDetails extends React.Component {
               marginLeft: "55px",
             }}
           />
-          <Typography style={{ textAlign: "center", fontSize: "32px", marginLeft: "5px" }}>
+          <Typography
+            style={{ textAlign: "center", fontSize: "32px", marginLeft: "5px" }}
+          >
             Change Profile picture
           </Typography>
         </Box>
@@ -221,6 +297,26 @@ export default class EditDetails extends React.Component {
             onChange={(e) => this.handleEmail(e)}
             value={this.state.Email}
           ></input>
+          <Box style={{ width: "250px" }}>
+            <Collapse in={this.state.Emailerr}>
+              <Alert
+                severity="error"
+                style={{ background: "inherit", color: "red" }}
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => this.handleEmailerr()}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                Email format is wrong!
+              </Alert>
+            </Collapse>
+          </Box>
           <Typography
             style={{ fontSize: "32px", padding: "5px", marginTop: "45px" }}
           >
@@ -240,6 +336,26 @@ export default class EditDetails extends React.Component {
             onChange={(e) => this.handlePhoneNumber(e)}
             value={this.state.phoneNumber}
           ></input>
+          <Box style={{ width: "250px" }}>
+            <Collapse in={this.state.PhoneNumbererr}>
+              <Alert
+                severity="error"
+                style={{ background: "inherit", color: "red" }}
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => this.handlePhoneNumbererr()}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                Phone Number is not valid!
+              </Alert>
+            </Collapse>
+          </Box>
           <Typography
             style={{ fontSize: "32px", padding: "5px", marginTop: "45px" }}
           >
@@ -261,6 +377,26 @@ export default class EditDetails extends React.Component {
             onChange={(e) => this.handleOldPass(e)}
             //   value={this.state.phoneNumber}
           ></input>
+          <Box style={{ width: "250px" }}>
+            <Collapse in={this.state.OldPassworderr}>
+              <Alert
+                severity="error"
+                style={{ background: "inherit", color: "red" }}
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => this.handleOldPassworderr()}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                Old Password Does not match!
+              </Alert>
+            </Collapse>
+          </Box>
           <input
             style={{
               width: "992px",
@@ -293,6 +429,26 @@ export default class EditDetails extends React.Component {
             onChange={(e) => this.handleCheckPass(e)}
             //   value={this.state.phoneNumber}
           ></input>
+          <Box style={{ width: "250px" }}>
+            <Collapse in={this.state.NewPasserr}>
+              <Alert
+                severity="error"
+                style={{ background: "inherit", color: "red" }}
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => this.handleNewPasserr()}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                New Password Does Not Match!
+              </Alert>
+            </Collapse>
+          </Box>
           <Box
             style={{
               display: "flex",

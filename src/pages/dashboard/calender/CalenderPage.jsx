@@ -5,8 +5,8 @@ import Calender from "./Calender"
 import UpComingEvent from "./UpComingEvent"
 
 export default class CalenderPage extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {}
   }
 

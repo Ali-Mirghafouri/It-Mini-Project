@@ -11,7 +11,8 @@ export default function Button(props) {
         border: "1px solid white",
         borderRadius: "80px",
         fontSize: "35px",
-        marginBottom: props.mb
+        marginBottom: props.mb,
+        marginTop: props.mt
       }}
       onClick={() => props.checkPass()}
     >
