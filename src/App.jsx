@@ -1,39 +1,39 @@
-import React from "react";
-import LogIn from "./pages/logIn/LogIn";
-import { Box } from "@material-ui/core";
-import VerticalNav from "./pages/dashboard/verticalNav/VerticalNav";
-import CalenderPaje from "./pages/dashboard/calender/CalenderPaje";
-import Subjects from "./pages/dashboard/subjects/SubjectsPage";
-import ProfilePage from "./pages/dashboard/profile/ProfilePage";
-import { logInInit } from "./initData";
-import CourseGrades from "./pages/GradePage/CourseGrades";
+import React from "react"
+import LogIn from "./pages/logIn/LogIn"
+import { Box } from "@material-ui/core"
+import VerticalNav from "./pages/dashboard/verticalNav/VerticalNav"
+import CalenderPage from "./pages/dashboard/calender/CalenderPage"
+import Subjects from "./pages/dashboard/subjects/SubjectsPage"
+import ProfilePage from "./pages/dashboard/profile/ProfilePage"
+import { logInInit } from "./initData"
+import CourseGrades from "./pages/GradePage/CourseGrades"
 
 export default class App extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
       LogIn: false,
-      pageID: 4,
+      pageID: 0,
       student: null,
-    };
+    }
   }
 
   handleStudent(inp) {
     this.setState({
       student: inp,
-    });
+    })
   }
 
   initData() {
-    let item = localStorage.getItem("userTable");
+    let item = localStorage.getItem("userTable")
     if (item === null) {
-      localStorage.clear();
-      localStorage.setItem("userTable", JSON.stringify(logInInit));
+      localStorage.clear()
+      localStorage.setItem("userTable", JSON.stringify(logInInit))
     }
   }
 
   componentDidMount() {
-    this.initData();
+    this.initData()
   }
 
   changePageID(choice) {
@@ -42,25 +42,25 @@ export default class App extends React.Component {
         pageID: choice,
       }
       // () => console.log(this.state.pageID)
-    );
+    )
   }
 
   DisplayPage() {
     if (this.state.pageID === 0) {
-      return <CalenderPaje changePageID={this.changePageID.bind(this)} />;
+      return <CalenderPage changePageID={this.changePageID.bind(this)} />
     } else if (this.state.pageID === 1) {
-      return <Subjects />;
+      return <Subjects />
     } else if (this.state.pageID === 2) {
-      return <CourseGrades student={this.state.student} />;
+      return <CourseGrades student={this.state.student} />
     } else if (this.state.pageID === 4) {
-      return <ProfilePage student={this.state.student} />;
+      return <ProfilePage student={this.state.student} />
     }
   }
 
   LogInCheck() {
     this.setState({
       LogIn: true,
-    });
+    })
   }
   render() {
     if (this.state.LogIn === false) {
@@ -79,7 +79,7 @@ export default class App extends React.Component {
             handleStudent={this.handleStudent.bind(this)}
           />
         </Box>
-      );
+      )
     } else {
       return (
         <Box
@@ -99,7 +99,7 @@ export default class App extends React.Component {
             {this.DisplayPage()}
           </Box>
         </Box>
-      );
+      )
     }
   }
 }

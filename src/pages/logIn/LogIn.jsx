@@ -38,7 +38,7 @@ export default class LogIn extends React.Component {
 
   handleSID(event) {
     let inp = event.target.value
-    // inp = "b1801867" //DELETE THIS LINE
+    inp = "b1801867" //DELETE THIS LINE
     this.setState({
       SID: inp,
     })
@@ -46,7 +46,7 @@ export default class LogIn extends React.Component {
 
   handlePass(event) {
     let inp = event.target.value
-    // inp = "123" //DELETE THIS LINE
+    inp = "123" //DELETE THIS LINE
     this.setState({
       pass: inp,
     })
@@ -56,13 +56,14 @@ export default class LogIn extends React.Component {
     let student = "Student"
     const temp = JSON.parse(localStorage.getItem("userTable"))
     for (let i = 0; i < temp.length; i++) {
-      if (temp[i].studentId === this.state.SID.toLowerCase() &&
+      if (
+        temp[i].studentId === this.state.SID.toLowerCase() &&
         temp[i].password === this.state.pass
       ) {
-        this.props.LogInCheck();
-        student = student + "b" + temp[i].studentId.slice(4, 8);
-        let id = temp[i].studentId;
-        console.log(Students[i]);
+        this.props.LogInCheck()
+        student = student + "b" + temp[i].studentId.slice(4, 8)
+        let id = temp[i].studentId
+        console.log(Students[i])
         // this.initData()
         for (let i = 0; i < Students.length; i++) {
           if (id === Students[i].ID.toLowerCase()) {
