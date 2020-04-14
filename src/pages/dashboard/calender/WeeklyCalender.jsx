@@ -181,7 +181,7 @@ componentDidMount() {
           {this.state.student.subjectTime.map(
             ({
               id,
-              WeedDay,
+              WeekDay,
               Class1Name,
               Class1Time,
               Class2Name,
@@ -194,7 +194,7 @@ componentDidMount() {
               <Box>
                 {this.displayCal(
                   id,
-                  WeedDay,
+                  WeekDay,
                   Class1Name,
                   Class1Time,
                   Class2Name,

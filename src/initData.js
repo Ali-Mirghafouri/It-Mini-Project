@@ -5,46 +5,46 @@ export const logInInit = [
 ]
 
 export const Students = [
-  // {
-  //   Name: "Seyed Mirghafouri",
-  //   ID: "B1801866",
-  //   Course: "Diploma in Information Technology",
-  //   Email: "ali.mirghafouri@gmail.com",
-  //   PhoneNumber: "012-3456789",
-  //   subjects: [
-  //     {
-  //       DIPMPR01: ["DIPMPR01", "75%"],
-  //       DIP202: ["DIP202", "45%"],
-  //       DIP204: ["DIP204", "80%"],
-  //       DIP222: ["DIP222", "50%"],
-  //     },
-  //   ],
-  //   CourseProgress: [{ y: 50, indexLabel: "progressed" }],
-  //   Attendence: 80,
-  //   CGPA: [
-  //     //   {
-  //     //     L1S1: 2.75,
-  //     //     L1S2: 3.45,
-  //     //     L1S3: 3.15,
-  //     //     L2S1: null,
-  //     //     L2S2: null,
-  //     //     L2S3: null,
+  {
+    Name: "Admin",
+    ID: "Admin",
+    Course: "Diploma in Information Technology",
+    Email: "ali.mirghafouri@gmail.com",
+    PhoneNumber: "012-3456789",
+    subjects: [
+      {
+        DIPMPR01: ["DIPMPR01", "75%"],
+        DIP202: ["DIP202", "45%"],
+        DIP204: ["DIP204", "80%"],
+        DIP222: ["DIP222", "50%"],
+      },
+    ],
+    CourseProgress: [{ y: 50, indexLabel: "progressed" }],
+    Attendence: 80,
+    CGPA: [
+      //   {
+      //     L1S1: 2.75,
+      //     L1S2: 3.45,
+      //     L1S3: 3.15,
+      //     L2S1: null,
+      //     L2S2: null,
+      //     L2S3: null,
 
-  //     // },
-  //     {
-  //       x: 1,
-  //       y: 2.75,
-  //     },
-  //     {
-  //       x: 2,
-  //       y: 3.45,
-  //     },
-  //     {
-  //       x: 3,
-  //       y: 3.15,
-  //     },
-  //   ],
-  // },
+      // },
+      {
+        x: 1,
+        y: 2.75,
+      },
+      {
+        x: 2,
+        y: 3.45,
+      },
+      {
+        x: 3,
+        y: 3.15,
+      },
+    ],
+  },
   {
     Name: "Seyed Ali Mirghafouri",
     ID: "B1801867",
@@ -54,7 +54,7 @@ export const Students = [
     subjectTime: [
       {
         id:0,
-        WeedDay: "MON",
+        WeekDay: "MON",
         Class1Name: "DIP1ITC01",
         Class1Time: "8AM - 11AM",
         Class2Name: null,
@@ -66,7 +66,7 @@ export const Students = [
       },
       {
         id:1,
-        WeedDay: "TUES",
+        WeekDay: "TUES",
         Class1Name: "DIP222",
         Class1Time: "9AM - 12PM",
         Class2Name: null,
@@ -78,7 +78,7 @@ export const Students = [
       },
       {
         id:2,
-        WeedDay: "WED",
+        WeekDay: "WED",
         Class1Name: null,
         Class1Time: null,
         Class2Name: "DIP1SAD01",
@@ -90,7 +90,7 @@ export const Students = [
       },
       {
         id:3,
-        WeedDay: "THURS",
+        WeekDay: "THURS",
         Class1Name: "DIP222",
         Class1Time: "9AM - 12PM",
         Class2Name: null,
@@ -102,7 +102,7 @@ export const Students = [
       },
       {
         id:2,
-        WeedDay: "FRI",
+        WeekDay: "FRI",
         Class1Name: null,
         Class1Time: null,
         Class2Name: null,
@@ -118,9 +118,10 @@ export const Students = [
         id: 0,
         Subject: "DIPMPR01",
         description: "IT MINI PROJECT",
-        mark: "3.25",
-        Lecturer: "name",
-        Email: "email",
+        Grade: "3.25",
+        perc: "60",
+        Lecturer: "MR. Steven",
+        Email: "lecturer@gmail.com",
         Lectures: ["l1", "l2", "l3"],
         Toturial: ["t1", "t2", "t3"]
       },
@@ -128,9 +129,10 @@ export const Students = [
         id: 1,
         Subject: "DIP202",
         description: "BUSINESS COMUNNICATIONS",
-        mark: "3.5",
+        Grade: "3.5",
+        perc: "60",
         Lecturer: "name",
-        Email: "email",
+        Email: "lecturer@gmail.com",
         Lectures: ["l1", "l2", "l3"],
         Toturial: ["t1", "t2", "t3"]
       },
@@ -138,9 +140,10 @@ export const Students = [
         id: 2,
         Subject: "DIP1PRG12",
         description: "INTRODUCTION TO STRUCTURED PROGRAMMING",
-        mark: "0",
+        Grade: "0",
+        perc: "60",
         Lecturer: "name",
-        Email: "email",
+        Email: "lecturer@gmail.com",
         Lectures: ["l1", "l2", "l3"],
         Toturial: ["t1", "t2", "t3"]
       },
@@ -148,10 +151,10 @@ export const Students = [
         id: 3,
         Subject: "DIP222",
         description: "PROGRAMMING PRINCPLES",
-        mark: "-1",
+        Grade: "-1",
         perc: "60",
         Lecturer: "name",
-        Email: "email",
+        Email: "lecturer@gmail.com",
         Lectures: ["l1", "l2", "l3"],
         Toturial: ["t1", "t2", "t3"]
       },
@@ -159,10 +162,10 @@ export const Students = [
         id: 4,
         Subject: "DIP1SAD01",
         description: "INTRODUCTION TO ANALYSIS & DESIGN",
-        mark: "-1",
+        Grade: "-1",
         perc: "75",
         Lecturer: "name",
-        Email: "email",
+        Email: "lecturer@gmail.com",
         Lectures: ["l1", "l2", "l3"],
         Toturial: ["t1", "t2", "t3"]
       },
@@ -170,10 +173,10 @@ export const Students = [
         id: 5,
         Subject: "DIP1ITC01",
         description: "INTRODUCTION TO INFORMATION TECHNOLOGY",
-        mark: "-1",
+        Grade: "-1",
         perc: "80",
         Lecturer: "name",
-        Email: "email",
+        Email: "lecturer@gmail.com",
         Lectures: ["l1", "l2", "l3"],
         Toturial: ["t1", "t2", "t3"]
       },

@@ -55,12 +55,12 @@ export default class Subjects extends React.Component {
                 Email,
                 Lectures,
                 Toturial,
-                mark,
+                Grade,
                 id
               }) => (
                 <SubjectsCard
                   obj={this.state.student.subjects[id]}
-                  mark={mark}
+                  mark={Grade}
                   Subject={Subject}
                   SubjectName={description}
                   Lecturer={Lecturer}

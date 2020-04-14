@@ -26,10 +26,10 @@ export default class App extends React.Component {
 
   initData() {
     let item = localStorage.getItem("userTable")
-    if (item === null) {
+    // if (item === null) {
       localStorage.clear()
       localStorage.setItem("userTable", JSON.stringify(logInInit))
-    }
+    // }
   }
 
   componentDidMount() {

@@ -10,8 +10,8 @@ export default class SubjectProgress extends React.Component {
     };
   }
 
-  bars(Subject, mark) {
-    if (mark !== undefined) {
+  bars(Subject, mark, Grade) {
+    if (Grade === "-1") {
       return (
         <Box
           style={{
@@ -62,8 +62,8 @@ export default class SubjectProgress extends React.Component {
     return (
       <Box style={{ height: "cover", width: "825px" }}>
         <Box>
-          {this.state.student.subjects.map(({ Subject, perc }) =>
-            this.bars(Subject, perc)
+          {this.state.student.subjects.map(({ Subject, perc, Grade }) =>
+            this.bars(Subject, perc, Grade)
           )}
         </Box>
       </Box>
