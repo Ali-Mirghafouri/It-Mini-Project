@@ -11,7 +11,7 @@ export default class ProfilePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayEditPage: true,
+      displayEditPage: false,
       student: JSON.parse(localStorage.getItem(this.props.student)),
     };
   }
