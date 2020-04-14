@@ -11,57 +11,59 @@ export default class SubjectProgress extends React.Component {
   }
 
   bars(Subject, mark) {
-    return (
-      <Box
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          // justifyContent: "center",
-          // alignItems: "center",
-        }}
-      >
+    if (mark !== undefined) {
+      return (
         <Box
           style={{
             display: "grid",
-            gridTemplateRows: "80px",
+            gridTemplateColumns: "1fr 1fr",
             // justifyContent: "center",
-            alignItems: "center",
-            marginRight:"50px"
+            // alignItems: "center",
           }}
         >
-          <Box style={{height:"cover"}} >
-            <Typography style={{ fontSize: "35px" }}>{Subject}</Typography>
+          <Box
+            style={{
+              display: "grid",
+              gridTemplateRows: "80px",
+              // justifyContent: "center",
+              alignItems: "center",
+              marginRight: "50px",
+            }}
+          >
+            <Box style={{ height: "cover" }}>
+              <Typography style={{ fontSize: "35px" }}>{Subject}</Typography>
+            </Box>
+          </Box>
+          <Box
+            style={{
+              display: "grid",
+              gridTemplateRows: "80px",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <ProgressBar
+              width="540px"
+              height="30px"
+              percentage={mark}
+              rect
+              bgColor="#31DC75"
+              trackBorderColor="grey"
+              trackPathColor="white"
+              fontColor="black"
+            />
           </Box>
         </Box>
-        <Box
-          style={{
-            display: "grid",
-            gridTemplateRows: "80px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <ProgressBar
-            width="540px"
-            height="30px"
-            percentage={mark}
-            rect
-            bgColor="#31DC75"
-            trackBorderColor="grey"
-            trackPathColor="white"
-            fontColor="black"
-          />
-        </Box>
-      </Box>
-    );
+      );
+    }
   }
 
   render() {
     return (
       <Box style={{ height: "cover", width: "825px" }}>
         <Box>
-          {this.state.student.subjects.map(({ Subject, mark }) =>
-            this.bars(Subject, mark)
+          {this.state.student.subjects.map(({ Subject, perc }) =>
+            this.bars(Subject, perc)
           )}
         </Box>
       </Box>

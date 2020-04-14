@@ -38,7 +38,7 @@ export default class LogIn extends React.Component {
 
   handleSID(event) {
     let inp = event.target.value
-    inp = "b1801867" //DELETE THIS LINE
+    // inp = "b1801867" //DELETE THIS LINE
     this.setState({
       SID: inp,
     })
@@ -46,7 +46,7 @@ export default class LogIn extends React.Component {
 
   handlePass(event) {
     let inp = event.target.value
-    inp = "123" //DELETE THIS LINE
+    // inp = "123" //DELETE THIS LINE
     this.setState({
       pass: inp,
     })

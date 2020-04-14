@@ -1,5 +1,5 @@
 export const logInInit = [
-  { studentId: "b1801867", password: "123" },
+  { studentId: "b1801867", password: "1867" },
   { studentId: "b1801866", password: "123" },
   { studentId: "admin", password: "admin" },
 ]
@@ -50,7 +50,7 @@ export const Students = [
     ID: "B1801867",
     Course: "Diploma in Information Technology",
     Email: "ali.mirghafouri@gmail.com",
-    PhoneNumber: "012-3456789",
+    PhoneNumber: "0123456789",
     subjects: [
       {
         Subject: "DIPMPR01",
@@ -70,17 +70,18 @@ export const Students = [
       {
         Subject: "DIP222",
         description: "PROGRAMMING PRINCPLES",
-        mark: "3.0",
       },
       {
         Subject: "DIP1SAD01",
         description: "INTRODUCTION TO ANALYSIS & DESIGN",
         mark: "-1",
+        perc: "75"
       },
       {
         Subject: "DIP1ITC01",
         description: "INTRODUCTION TO INFORMATION TECHNOLOGY",
         mark: "-1",
+        perc: "80"
       },
     ],
     CourseProgress: [
