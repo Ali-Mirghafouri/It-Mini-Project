@@ -1,11 +1,16 @@
-import React from "react"
-import bg from "../../assets/bg.png"
-import { Box, Typography } from "@material-ui/core"
-import Input from "../../componants/Input"
-import Button from "../../componants/Button"
-import { EmailLogo, PasswordLogo } from "../../assets/icons"
-import HelpLogo from "../../assets/HelpLogo.png"
-import { Students } from "../../initData"
+import React from "react";
+import bg from "../../assets/bg.png";
+import { Box, Typography } from "@material-ui/core";
+import Input from "../../componants/Input";
+import Button from "../../componants/Button";
+import { EmailLogo, PasswordLogo } from "../../assets/icons";
+import HelpLogo from "../../assets/HelpLogo.png";
+import { Students } from "../../initData";
+import Alert from "@material-ui/lab/Alert";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+
 // w is for the width
 // h is for height
 // mb is for margin bottom
@@ -16,53 +21,66 @@ import { Students } from "../../initData"
 
 export default class LogIn extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       SID: null,
       pass: null,
-    }
+      Emailerr: true,
+    };
   }
 
   initData() {
-    localStorage.setItem("Students", JSON.stringify(Students))
-    console.log(localStorage.getItem("Students"))
+    localStorage.setItem("Students", JSON.stringify(Students));
+    console.log(localStorage.getItem("Students"));
+  }
+
+  handleEmailerr() {
+    if (this.state.Emailerr === true) {
+      this.setState({
+        Emailerr: false,
+      });
+    } else {
+      this.setState({
+        Emailerr: true,
+      });
+    }
   }
 
   handleSID(event) {
-    let inp = event.target.value
+    let inp = event.target.value;
     // inp = "b1801867" //DELETE THIS LINE
     this.setState({
       SID: inp,
-    })
+    });
   }
 
   handlePass(event) {
-    let inp = event.target.value
+    let inp = event.target.value;
     // inp = "123" //DELETE THIS LINE
     this.setState({
       pass: inp,
-    })
+    });
   }
 
   checkPass() {
-    let student = "Student"
-    const temp = JSON.parse(localStorage.getItem("userTable"))
+    let student = "Student";
+    const temp = JSON.parse(localStorage.getItem("userTable"));
     for (let i = 0; i < temp.length; i++) {
-      if (temp[i].studentId === this.state.SID.toLowerCase() &&
+      if (
+        temp[i].studentId === this.state.SID.toLowerCase() &&
         temp[i].password === this.state.pass
       ) {
         this.props.LogInCheck();
         student = student + "b" + temp[i].studentId.slice(4, 8);
-        this.props.handleStudent(student)
+        this.props.handleStudent(student);
         let id = temp[i].studentId;
         console.log(Students[i]);
         // this.initData()
-        let item = JSON.parse(localStorage.getItem(student))
+        let item = JSON.parse(localStorage.getItem(student));
         for (let i = 0; i < Students.length; i++) {
           if (id === Students[i].ID.toLowerCase() && item === null) {
-            localStorage.setItem(student, JSON.stringify(Students[i]))
+            localStorage.setItem(student, JSON.stringify(Students[i]));
             // console.log(localStorage.getItem(student))
-            
           }
         }
         // localStorage.setItem(student, JSON.stringify(Students.student))
@@ -151,6 +169,18 @@ export default class LogIn extends React.Component {
               value="b1801867"
               handleSID={this.handleSID.bind(this)}
             />{" "}
+            <Collapse in={this.state.Emailerr}>
+              <Alert
+                style={{ background: "inherit", color: "green" }}
+                action={
+                  <IconButton aria-label="close" color="inherit" size="small">
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                Student ID is wrong!
+              </Alert>
+            </Collapse>
             <Input
               w="505px"
               h="105px"
@@ -173,6 +203,6 @@ export default class LogIn extends React.Component {
           </Box>
         </Box>
       </Box>
-    )
+    );
   }
 }

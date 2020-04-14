@@ -197,7 +197,7 @@ export default class EditDetails extends React.Component {
               marginLeft: "55px",
             }}
           />
-          <Typography style={{ textAlign: "center", fontSize: "32px" }}>
+          <Typography style={{ textAlign: "center", fontSize: "32px", marginLeft: "5px" }}>
             Change Profile picture
           </Typography>
         </Box>

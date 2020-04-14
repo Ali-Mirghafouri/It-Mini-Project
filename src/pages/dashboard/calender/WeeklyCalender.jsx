@@ -1,12 +1,17 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
-import { WeeklySCH } from "../../../dummyData/Dummy";
 
 export default class WeeklyCalender extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      student: JSON.parse(localStorage.getItem(this.props.student))
+    };
   }
+
+componentDidMount() {
+  console.log(this.state.student)
+}
 
   displayCal(
     id,
@@ -173,7 +178,7 @@ export default class WeeklyCalender extends React.Component {
             gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
           }}
         >
-          {WeeklySCH.map(
+          {this.state.student.subjectTime.map(
             ({
               id,
               WeedDay,

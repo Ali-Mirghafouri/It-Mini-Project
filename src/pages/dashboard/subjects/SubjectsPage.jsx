@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import SubjectsCard from "./SubjectCard";
-import { SubjectEnrolled } from "../../../dummyData/Dummy";
 import SubjectDetail from "./SubjectDetail";
 
 export default class Subjects extends React.Component {
@@ -17,7 +16,8 @@ export default class Subjects extends React.Component {
         // Lectures: null,
         // Toturial: null
       },
-      showSubject: false
+      showSubject: false,
+      student: JSON.parse(localStorage.getItem(this.props.student)),
     };
   }
 
@@ -25,10 +25,16 @@ export default class Subjects extends React.Component {
     this.setState(
       {
         AccessSubject: obj,
-        showSubject: true
+        showSubject: true,
       },
       () => console.log(this.state.AccessSubject)
     );
+  }
+
+  handleShowSubject() {
+    this.setState({
+      showSubject: false,
+    })
   }
 
   render() {
@@ -41,20 +47,22 @@ export default class Subjects extends React.Component {
             </Typography>
           </Box>
           <Box style={{ display: "flex" }}>
-            {SubjectEnrolled.map(
+            {this.state.student.subjects.map(
               ({
-                id,
+                description,
                 Subject,
-                SubjectName,
                 Lecturer,
                 Email,
                 Lectures,
-                Toturial
+                Toturial,
+                mark,
+                id
               }) => (
                 <SubjectsCard
-                  id={id}
+                  obj={this.state.student.subjects[id]}
+                  mark={mark}
                   Subject={Subject}
-                  SubjectName={SubjectName}
+                  SubjectName={description}
                   Lecturer={Lecturer}
                   Email={Email}
                   Lectures={Lectures}
@@ -70,7 +78,7 @@ export default class Subjects extends React.Component {
     } else {
       return (
         <Box>
-          <SubjectDetail AccessSubject={this.state.AccessSubject} />
+          <SubjectDetail AccessSubject={this.state.AccessSubject}  handleShowSubject={this.handleShowSubject.bind(this)}/>
         </Box>
       );
     }

@@ -13,7 +13,7 @@ export default class App extends React.Component {
     super();
     this.state = {
       LogIn: false,
-      pageID: 4,
+      pageID: 0,
       student: null,
     };
   }
@@ -47,9 +47,14 @@ export default class App extends React.Component {
 
   DisplayPage() {
     if (this.state.pageID === 0) {
-      return <CalenderPaje changePageID={this.changePageID.bind(this)} />;
+      return (
+        <CalenderPaje
+          changePageID={this.changePageID.bind(this)}
+          student={this.state.student}
+        />
+      );
     } else if (this.state.pageID === 1) {
-      return <Subjects />;
+      return <Subjects student={this.state.student} />;
     } else if (this.state.pageID === 2) {
       return <CourseGrades student={this.state.student} />;
     } else if (this.state.pageID === 4) {
@@ -58,9 +63,15 @@ export default class App extends React.Component {
   }
 
   LogInCheck() {
-    this.setState({
-      LogIn: true,
-    });
+    if (this.state.LogIn === false) {
+      this.setState({
+        LogIn: true,
+      });
+    } else {
+      this.setState({
+        LogIn: false,
+      });
+    }
   }
   render() {
     if (this.state.LogIn === false) {
@@ -93,6 +104,8 @@ export default class App extends React.Component {
             <VerticalNav
               pageID={this.state.pageID}
               changePageID={this.changePageID.bind(this)}
+              student={this.state.student}
+              LogInCheck={this.LogInCheck.bind(this)}
             />
           </Box>
           <Box style={{ marginLeft: "109px", paddingTop: "119px" }}>

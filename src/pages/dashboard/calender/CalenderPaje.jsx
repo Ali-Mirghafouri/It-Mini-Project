@@ -5,8 +5,8 @@ import Calender from "./Calender";
 import UpComingEvent from "./UpComingEvent"
 
 export default class CalenderPaje extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
@@ -14,7 +14,7 @@ export default class CalenderPaje extends React.Component {
     return (
       <Box>
         <Box style={{margin:"0px 10px"}} >
-          <WeeklyCalender />
+          <WeeklyCalender student={this.props.student} />
         </Box>
         <Box style={{marginTop:"32px", marginLeft:"10px", display:"flex", alignItems:"center", justifyContent:"center"}} >
           <Calender />
