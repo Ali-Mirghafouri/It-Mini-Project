@@ -24,14 +24,6 @@ export default class LogIn extends React.Component {
   }
 
   initData() {
-    // const temp = []
-    // for (let i = 0; i < Students.length; i++) {
-    //   temp.push({
-    //     studentId: logInInit[i].studentId,
-    //     password: logInInit[i].password
-    //   })
-    // }
-    // localStorage.clear()
     localStorage.setItem("Students", JSON.stringify(Students))
     console.log(localStorage.getItem("Students"))
   }
@@ -60,16 +52,18 @@ export default class LogIn extends React.Component {
         temp[i].studentId === this.state.SID.toLowerCase() &&
         temp[i].password === this.state.pass
       ) {
-        this.props.LogInCheck()
-        student = student + "b" + temp[i].studentId.slice(4, 8)
-        let id = temp[i].studentId
-        console.log(Students[i])
+        this.props.LogInCheck();
+        student = student + "b" + temp[i].studentId.slice(4, 8);
+        this.props.handleStudent(student)
+        let id = temp[i].studentId;
+        console.log(Students[i]);
         // this.initData()
+        let item = JSON.parse(localStorage.getItem(student))
         for (let i = 0; i < Students.length; i++) {
-          if (id === Students[i].ID.toLowerCase()) {
+          if (id === Students[i].ID.toLowerCase() && item === null) {
             localStorage.setItem(student, JSON.stringify(Students[i]))
             // console.log(localStorage.getItem(student))
-            this.props.handleStudent(student)
+            
           }
         }
         // localStorage.setItem(student, JSON.stringify(Students.student))

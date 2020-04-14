@@ -37,13 +37,16 @@ export default class EditDetails extends React.Component {
         let temp = JSON.parse(localStorage.getItem("userTable"));
         temp.splice(index, 1);
         this.setState({
-          changePass: temp
-        })
+          changePass: temp,
+        });
       }
     }
   }
 
   handleSubmit() {
+    let newStudent = this.state.student;
+    newStudent.Email = this.state.Email;
+    newStudent.PhoneNumber = this.state.phoneNumber;
     let temp = [];
     let email = false;
     let phonenumber = false;
@@ -65,23 +68,24 @@ export default class EditDetails extends React.Component {
       currpass = true;
     }
     if (this.state.newPass === this.state.checkPass) {
-      newpass = true;
+      if (this.state.newPass !== null && this.state.newPass !== " ") {
+        newpass = true;
+      }
     }
-    if (
-      newpass === true &&
-      currpass === true &&
-      phonenumber === true &&
-      email === true
-    ) {
-      this.state.changePass.push({
-        studentId: this.state.student.ID.toLowerCase(),
-        password: this.state.newPass,
-      });
-      localStorage.removeItem("userTable")
-      localStorage.setItem("userTable", JSON.stringify(this.state.changePass));
-      
-      let e = "dev.dev@gmail.com"
-      localStorage.removeItem(this.state.student.Email)
+    if (phonenumber === true && email === true) {
+      localStorage.removeItem(this.props.student);
+      localStorage.setItem(this.props.student, JSON.stringify(newStudent));
+      if (currpass === true && newpass === true) {
+        this.state.changePass.push({
+          studentId: this.state.student.ID.toLowerCase(),
+          password: this.state.newPass,
+        });
+        localStorage.removeItem("userTable");
+        localStorage.setItem(
+          "userTable",
+          JSON.stringify(this.state.changePass)
+        );
+      }
 
       this.props.handleDisplayEditPage();
     }
