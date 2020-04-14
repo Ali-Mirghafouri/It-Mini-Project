@@ -14,7 +14,7 @@ export default class CalenderPage extends React.Component {
     return (
       <Box>
         <Box style={{ margin: "0px 10px" }}>
-          <WeeklyCalender />
+          <WeeklyCalender student={this.props.student} />
         </Box>
         <Box
           style={{
