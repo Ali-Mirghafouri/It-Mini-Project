@@ -6,6 +6,11 @@ import Button from "../../componants/Button"
 import { EmailLogo, PasswordLogo } from "../../assets/icons"
 import HelpLogo from "../../assets/HelpLogo.png"
 import { Students } from "../../initData"
+import Alert from "@material-ui/lab/Alert"
+import Collapse from "@material-ui/core/Collapse"
+import IconButton from "@material-ui/core/IconButton"
+import CloseIcon from "@material-ui/icons/Close"
+
 // w is for the width
 // h is for height
 // mb is for margin bottom
@@ -18,8 +23,11 @@ export default class LogIn extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      users: JSON.parse(localStorage.getItem("userTable")),
       SID: null,
       pass: null,
+      Emailerr: false,
+      Passerr: false,
     }
   }
 
@@ -28,9 +36,33 @@ export default class LogIn extends React.Component {
     console.log(localStorage.getItem("Students"))
   }
 
+  handleEmailerr() {
+    if (this.state.Emailerr === true) {
+      this.setState({
+        Emailerr: false,
+      })
+    } else {
+      this.setState({
+        Emailerr: true,
+      })
+    }
+  }
+
+  handlePasserr() {
+    if (this.state.Passerr === true) {
+      this.setState({
+        Passerr: false,
+      })
+    } else {
+      this.setState({
+        Passerr: true,
+      })
+    }
+  }
+
   handleSID(event) {
     let inp = event.target.value
-    inp = "admin" //DELETE THIS LINE
+    // inp = "admin" //DELETE THIS LINE
     this.setState({
       SID: inp,
     })
@@ -38,41 +70,53 @@ export default class LogIn extends React.Component {
 
   handlePass(event) {
     let inp = event.target.value
-    inp = "admin" //DELETE THIS LINE
+    // inp = "admin" //DELETE THIS LINE
     this.setState({
       pass: inp,
     })
   }
 
   checkPass() {
-    if ("admin" === this.state.SID.toLowerCase()) {
-      this.props.LogInCheck(2)
-      return
-    }
-
     let student = "Student"
+    let id = ""
     const temp = JSON.parse(localStorage.getItem("userTable"))
     for (let i = 0; i < temp.length; i++) {
       if (
         temp[i].studentId === this.state.SID.toLowerCase() &&
         temp[i].password === this.state.pass
       ) {
-        this.props.LogInCheck(1)
+        // this.props.LogInCheck()
         student = student + "b" + temp[i].studentId.slice(4, 8)
+        this.props.LogInCheck(1)
         this.props.handleStudent(student)
         let id = temp[i].studentId
         console.log(Students[i])
-        // this.initData()
         let item = JSON.parse(localStorage.getItem(student))
         for (let i = 0; i < Students.length; i++) {
           if (id === Students[i].ID.toLowerCase() && item === null) {
             localStorage.setItem(student, JSON.stringify(Students[i]))
-            // console.log(localStorage.getItem(student))
           }
         }
-        // localStorage.setItem(student, JSON.stringify(Students.student))
-        // console.log(localStorage.getItem(student))
+        if ("admin" === this.state.SID.toLowerCase()) {
+          this.props.LogInCheck(2)
+          return
+        }
+      } else {
+        if (temp[i].studentId === this.state.SID.toLowerCase()) {
+          id = true
+          this.setState({
+            Emailerr: false,
+          })
+        }
+        if (temp[i].password !== this.state.pass && id === true) {
+          this.handlePasserr()
+        }
       }
+    }
+
+    if (id !== true) {
+      console.log(id)
+      this.handleEmailerr()
     }
   }
 
@@ -125,7 +169,7 @@ export default class LogIn extends React.Component {
             style={{
               zIndex: "100",
               display: "grid",
-              alignContent: "center",
+              alignContent: "start",
               justifyItems: "center",
               marginTop: "400px",
             }}
@@ -156,10 +200,27 @@ export default class LogIn extends React.Component {
               value="b1801867"
               handleSID={this.handleSID.bind(this)}
             />{" "}
+            <Collapse in={this.state.Emailerr}>
+              <Alert
+                severity="error"
+                style={{ background: "inherit", color: "red" }}
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => this.handleEmailerr()}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                Student ID is wrong!
+              </Alert>
+            </Collapse>
             <Input
               w="505px"
               h="105px"
-              mb="136px"
               ph="Password"
               fsize="35px"
               type="password"
@@ -167,11 +228,30 @@ export default class LogIn extends React.Component {
               Licon={<PasswordLogo />}
               handleSID={this.handlePass.bind(this)}
             />
+            <Collapse in={this.state.Passerr}>
+              <Alert
+                severity="error"
+                style={{ background: "inherit", color: "red" }}
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => this.handlePasserr()}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                Password is wrong!
+              </Alert>
+            </Collapse>
             <Button
               ph="LOGIN"
               w="368px"
               h="107px"
               mb="16px"
+              mt="120px"
               checkPass={this.checkPass.bind(this)}
             />
             <Typography style={{ color: "white" }}>Forgot Password?</Typography>

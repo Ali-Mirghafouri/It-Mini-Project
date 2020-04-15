@@ -14,6 +14,20 @@ export default class VerticalNav extends React.Component {
     super(props)
     this.state = {
       drawerOpen: false,
+      student: JSON.parse(localStorage.getItem(this.props.student)),
+      visible: "none",
+    }
+  }
+
+  handleVisible() {
+    if (this.state.visible === "none") {
+      this.setState({
+        visible: "",
+      })
+    } else {
+      this.setState({
+        visible: "none",
+      })
     }
   }
 
@@ -62,7 +76,7 @@ export default class VerticalNav extends React.Component {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                width: "390px",
+                width: "500px",
               }}
             >
               <Box
@@ -82,10 +96,24 @@ export default class VerticalNav extends React.Component {
                     marginRight: "28px",
                   }}
                 />
-                <Typography>Student Name</Typography>
+                <Box>
+                  <Typography style={{ textAlign: "center" }}>
+                    {this.state.student.Name}
+                  </Typography>
+                  <Box onClick={() => this.props.LogInCheck()}>
+                    <Typography
+                      style={{
+                        textAlign: "center",
+                        display: this.state.visible,
+                      }}
+                    >
+                      Log Out
+                    </Typography>
+                  </Box>
+                </Box>
               </Box>
               <Box>
-                <IconButton>
+                <IconButton onClick={() => this.handleVisible()}>
                   <LogOutIcon />
                 </IconButton>
               </Box>

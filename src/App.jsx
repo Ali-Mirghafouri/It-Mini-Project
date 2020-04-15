@@ -27,10 +27,10 @@ export default class App extends React.Component {
 
   initData() {
     let item = localStorage.getItem("userTable")
-    if (item === null) {
-      localStorage.clear()
-      localStorage.setItem("userTable", JSON.stringify(logInInit))
-    }
+    // if (item === null) {
+    localStorage.clear()
+    localStorage.setItem("userTable", JSON.stringify(logInInit))
+    // }
   }
 
   componentDidMount() {
@@ -48,11 +48,16 @@ export default class App extends React.Component {
 
   DisplayPage() {
     if (this.state.pageID === 0 && this.state.LogInNo === 1) {
-      return <CalenderPage changePageID={this.changePageID.bind(this)} />
+      return (
+        <CalenderPage
+          changePageID={this.changePageID.bind(this)}
+          student={this.state.student}
+        />
+      )
     } else if (this.state.pageID === 1 && this.state.LogInNo === 1) {
-      return <Subjects />
+      return <Subjects student={this.state.student} />
     } else if (this.state.pageID === 0 && this.state.LogInNo === 2) {
-      return <SelectStudent  />
+      return <SelectStudent />
     } else if (this.state.pageID === 2) {
       return <CourseGrades student={this.state.student} />
     } else if (this.state.pageID === 4) {
@@ -77,6 +82,7 @@ export default class App extends React.Component {
             margin: "0px",
           }}
         >
+          {/* <a href={Pdf} target='_blank'>Test</a> */}
           <LogIn
             LogInCheck={this.LogInCheck.bind(this)}
             handleStudent={this.handleStudent.bind(this)}
@@ -97,6 +103,8 @@ export default class App extends React.Component {
               pageID={this.state.pageID}
               changePageID={this.changePageID.bind(this)}
               client="student"
+              student={this.state.student}
+              LogInCheck={this.LogInCheck.bind(this)}
             />
           </Box>
           <Box style={{ marginLeft: "109px", paddingTop: "119px" }}>
@@ -118,6 +126,8 @@ export default class App extends React.Component {
               pageID={0}
               changePageID={this.changePageID.bind(this)}
               client="admin"
+              student={this.state.student}
+              LogInCheck={this.LogInCheck.bind(this)}
             />
           </Box>
           <Box style={{ marginLeft: "109px", paddingTop: "119px" }}>

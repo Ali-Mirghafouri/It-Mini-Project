@@ -1,7 +1,5 @@
 import React from "react"
 import { Box, Typography } from "@material-ui/core"
-import HelpLogo from "../../assets/HelpLogo.png"
-import { Students } from "../../initData"
 
 const header = [
   "Subject Code",
@@ -30,7 +28,7 @@ function BuildRow(data) {
     "white",
     "white",
   ]
-  let mark = parseFloat(data.mark)
+  let mark = parseFloat(data.Grade)
   if (mark === -1) {
     marks = ["?", "?", "?", "?", "?", "?", "?", "?", "?"]
     colors = [
@@ -45,31 +43,31 @@ function BuildRow(data) {
       "#989898",
     ]
   } else if (mark >= 0 && mark < 2.25) {
-    marks[0] = data.mark
+    marks[0] = data.Grade
     colors[0] = "red"
   } else if (mark >= 2.25 && mark < 2.5) {
-    marks[1] = data.mark
+    marks[1] = data.Grade
     colors[1] = "#00FF33"
   } else if (mark >= 2.5 && mark < 2.75) {
-    marks[2] = data.mark
+    marks[2] = data.Grade
     colors[2] = "#00FF33"
   } else if (mark >= 2.75 && mark < 3) {
-    marks[3] = data.mark
+    marks[3] = data.Grade
     colors[3] = "#00FF33"
   } else if (mark >= 3 && mark < 3.25) {
-    marks[4] = data.mark
+    marks[4] = data.Grade
     colors[4] = "#00FF33"
   } else if (mark >= 3.25 && mark < 3.5) {
-    marks[5] = data.mark
+    marks[5] = data.Grade
     colors[5] = "#00FF33"
   } else if (mark >= 3.5 && mark < 3.75) {
-    marks[6] = data.mark
+    marks[6] = data.Grade
     colors[6] = "#00FF33"
   } else if (mark >= 3.75 && mark < 4) {
-    marks[7] = data.mark
+    marks[7] = data.Grade
     colors[7] = "#00FF33"
   } else if (mark === 4) {
-    marks[8] = data.mark
+    marks[8] = data.Grade
     colors[8] = "#00FF33"
   }
   // console.log(data)

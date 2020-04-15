@@ -1,7 +1,6 @@
 import React from "react";
 import { Box } from "@material-ui/core";
 import CanvasJSReact from "../../../canvasjs.react";
-var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class CGPA extends React.Component {
@@ -37,7 +36,7 @@ componentDidMount() {
     const options = {
 			theme: "light2",
 			title: {
-				text: "Stock Price of NIFTY 50"
+				text: "CGPA FOR EACH SEM"
 			},
 			axisY: {
         interval: 0.5,
@@ -55,7 +54,6 @@ componentDidMount() {
 		}
     return <Box style={{width:"871px", height:"400px"}} >
         <CanvasJSChart options = {options}
-            /* onRef = {ref => this.chart = ref} */
         />
     </Box>;
   }

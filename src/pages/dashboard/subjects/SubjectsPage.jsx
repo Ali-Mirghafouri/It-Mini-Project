@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import SubjectsCard from "./SubjectCard";
-import { SubjectEnrolled } from "../../../dummyData/Dummy";
 import SubjectDetail from "./SubjectDetail";
 
 export default class Subjects extends React.Component {
@@ -17,7 +16,8 @@ export default class Subjects extends React.Component {
         // Lectures: null,
         // Toturial: null
       },
-      showSubject: false
+      showSubject: false,
+      student: JSON.parse(localStorage.getItem(this.props.student)),
     };
   }
 
@@ -25,36 +25,44 @@ export default class Subjects extends React.Component {
     this.setState(
       {
         AccessSubject: obj,
-        showSubject: true
+        showSubject: true,
       },
       () => console.log(this.state.AccessSubject)
     );
+  }
+
+  handleShowSubject() {
+    this.setState({
+      showSubject: false,
+    })
   }
 
   render() {
     if (this.state.showSubject === false) {
       return (
         <Box>
-          <Box style={{ padding: "88px 91px" }}>
+          <Box style={{ padding: "80px 85px" }}>
             <Typography style={{ fontSize: "73px", fontWeight: "bold" }}>
               MY SUBJECTS
             </Typography>
           </Box>
           <Box style={{ display: "flex" }}>
-            {SubjectEnrolled.map(
+            {this.state.student.subjects.map(
               ({
-                id,
+                description,
                 Subject,
-                SubjectName,
                 Lecturer,
                 Email,
                 Lectures,
-                Toturial
+                Toturial,
+                Grade,
+                id
               }) => (
                 <SubjectsCard
-                  id={id}
+                  obj={this.state.student.subjects[id]}
+                  mark={Grade}
                   Subject={Subject}
-                  SubjectName={SubjectName}
+                  SubjectName={description}
                   Lecturer={Lecturer}
                   Email={Email}
                   Lectures={Lectures}
@@ -70,7 +78,7 @@ export default class Subjects extends React.Component {
     } else {
       return (
         <Box>
-          <SubjectDetail AccessSubject={this.state.AccessSubject} />
+          <SubjectDetail AccessSubject={this.state.AccessSubject}  handleShowSubject={this.handleShowSubject.bind(this)}/>
         </Box>
       );
     }
