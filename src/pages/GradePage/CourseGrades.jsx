@@ -72,7 +72,7 @@ function BuildRow(data) {
     marks[8] = data.mark
     colors[8] = "#00FF33"
   }
-  console.log(data)
+  // console.log(data)
   return (
     <React.Fragment>
       <Box

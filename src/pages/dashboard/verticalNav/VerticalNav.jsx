@@ -1,34 +1,35 @@
-import React from "react";
-import { Box, List, Typography, Drawer, IconButton } from "@material-ui/core";
-import { VerticalNavCardInfo } from "../../../dummyData/Dummy";
-import VerticalNavItem from "./VerticalNavItem";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import HelpLogoSmall from "../../../assets/HelpLogoSmall.png";
-import { LogOutIcon } from "../../../assets/icons";
-import "./VerticalNavStyle.css";
+import React from "react"
+import { Box, List, Typography, Drawer, IconButton } from "@material-ui/core"
+import { VerticalNavCardInfo } from "../../../dummyData/Dummy"
+import { VerticalNavCardInfoAdmin } from "../../../dummyData/Dummy"
+import VerticalNavItem from "./VerticalNavItem"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import HelpLogoSmall from "../../../assets/HelpLogoSmall.png"
+import { LogOutIcon } from "../../../assets/icons"
+import "./VerticalNavStyle.css"
 
 export default class VerticalNav extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      drawerOpen: false
-    };
+      drawerOpen: false,
+    }
   }
 
   handleDrawerOpen() {
     if (this.state.drawerOpen === false) {
       this.setState({
-        drawerOpen: true
-      });
+        drawerOpen: true,
+      })
     }
   }
 
   handleDrawerClose() {
     if (this.state.drawerOpen === true) {
       this.setState({
-        drawerOpen: false
-      });
+        drawerOpen: false,
+      })
     }
   }
 
@@ -36,14 +37,14 @@ export default class VerticalNav extends React.Component {
     return (
       <Box>
         <AppBar
-        display="block"
+          display="block"
           position="fixed"
           style={{ zIndex: 10111, backgroundColor: "#540000" }}
         >
           <Toolbar>
             <Box
               style={{
-                width: "100%"
+                width: "100%",
               }}
             >
               <Box
@@ -52,7 +53,7 @@ export default class VerticalNav extends React.Component {
                   width: "256px",
                   backgroundImage: `url(${HelpLogoSmall})`,
                   backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover"
+                  backgroundSize: "cover",
                 }}
               />
             </Box>
@@ -61,7 +62,7 @@ export default class VerticalNav extends React.Component {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                width: "390px"
+                width: "390px",
               }}
             >
               <Box
@@ -69,7 +70,7 @@ export default class VerticalNav extends React.Component {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  marginRight: "28px"
+                  marginRight: "28px",
                 }}
               >
                 <Box
@@ -78,7 +79,7 @@ export default class VerticalNav extends React.Component {
                     height: "100px",
                     backgroundColor: "black",
                     borderRadius: "100%",
-                    marginRight: "28px"
+                    marginRight: "28px",
                   }}
                 />
                 <Typography>Student Name</Typography>
@@ -99,22 +100,34 @@ export default class VerticalNav extends React.Component {
           >
             <Box>
               <List>
-                {VerticalNavCardInfo.map(({ id, Option, logo }) => (
-                  <VerticalNavItem
-                    key={id}
-                    id={id}
-                    logo={logo}
-                    Option={Option}
-                    changePageID={this.props.changePageID}
-                    choice={this.props.pageID}
-                    drawerOpen={this.state.drawerOpen}
-                  />
-                ))}
+                {this.props.client === "student"
+                  ? VerticalNavCardInfo.map(({ id, Option, logo }) => (
+                      <VerticalNavItem
+                        key={id}
+                        id={id}
+                        logo={logo}
+                        Option={Option}
+                        changePageID={this.props.changePageID}
+                        choice={this.props.pageID}
+                        drawerOpen={this.state.drawerOpen}
+                      />
+                    ))
+                  : VerticalNavCardInfoAdmin.map(({ id, Option, logo }) => (
+                      <VerticalNavItem
+                        key={id}
+                        id={id}
+                        logo={logo}
+                        Option={Option}
+                        changePageID={this.props.changePageID}
+                        choice={this.props.pageID}
+                        drawerOpen={this.state.drawerOpen}
+                      />
+                    ))}
               </List>
             </Box>
           </Box>
         </Drawer>
       </Box>
-    );
+    )
   }
 }

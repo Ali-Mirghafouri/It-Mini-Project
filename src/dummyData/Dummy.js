@@ -1,39 +1,52 @@
-import React from "react";
+import React from "react"
 import {
   HomeIcon,
   EnrolledSubjectsIcon,
   GradesIcon,
   NewsAndEventsIcon,
-  ProfileIcon
-} from "../assets/icons";
+  ProfileIcon,
+} from "../assets/icons"
 
 export const VerticalNavCardInfo = [
   {
     id: 0,
     Option: "Home",
-    logo: <HomeIcon />
+    logo: <HomeIcon />,
   },
   {
     id: 1,
     Option: "Enrolled Subjects",
-    logo: <EnrolledSubjectsIcon />
+    logo: <EnrolledSubjectsIcon />,
   },
   {
     id: 2,
     Option: "Grades",
-    logo: <GradesIcon />
+    logo: <GradesIcon />,
   },
   {
     id: 3,
     Option: "News & Events",
-    logo: <NewsAndEventsIcon />
+    logo: <NewsAndEventsIcon />,
   },
   {
     id: 4,
     Option: "Profile",
-    logo: <ProfileIcon />
-  }
-];
+    logo: <ProfileIcon />,
+  },
+]
+
+export const VerticalNavCardInfoAdmin = [
+  {
+    id: 0,
+    Option: "Student Grades",
+    logo: <ProfileIcon />,
+  },
+  {
+    id: 1,
+    Option: "News & Events",
+    logo: <NewsAndEventsIcon />,
+  },
+]
 
 export const SubjectEnrolled = [
   {
@@ -43,7 +56,7 @@ export const SubjectEnrolled = [
     Lecturer: "name",
     Email: "email",
     Lectures: ["l1", "l2", "l3"],
-    Toturial: ["t1", "t2", "t3"]
+    Toturial: ["t1", "t2", "t3"],
   },
   {
     id: 1,
@@ -52,7 +65,7 @@ export const SubjectEnrolled = [
     Lecturer: "name",
     Email: "email",
     Lectures: ["l1", "l2", "l3"],
-    Toturial: ["t1", "t2", "t3"]
+    Toturial: ["t1", "t2", "t3"],
   },
   {
     id: 2,
@@ -61,13 +74,13 @@ export const SubjectEnrolled = [
     Lecturer: "YONG YIK LOONG",
     Email: "yongyl@help.edu.my",
     Lectures: ["l1", "l2", "l3"],
-    Toturial: ["t1", "t2", "t3"]
-  }
-];
+    Toturial: ["t1", "t2", "t3"],
+  },
+]
 
 export const WeeklySCH = [
   {
-    id:0,
+    id: 0,
     WeedDay: "MON",
     Class1Name: "DIP222",
     Class1Time: "8AM - 11AM",
@@ -79,7 +92,7 @@ export const WeeklySCH = [
     Class4Time: null,
   },
   {
-    id:1,
+    id: 1,
     WeedDay: "TUES",
     Class1Name: "DIP1MPR01",
     Class1Time: "9AM - 12PM",
@@ -91,7 +104,7 @@ export const WeeklySCH = [
     Class4Time: null,
   },
   {
-    id:2,
+    id: 2,
     WeedDay: "WED",
     Class1Name: null,
     Class1Time: null,
@@ -103,7 +116,7 @@ export const WeeklySCH = [
     Class4Time: null,
   },
   {
-    id:3,
+    id: 3,
     WeedDay: "THURS",
     Class1Name: null,
     Class1Time: null,
@@ -115,7 +128,7 @@ export const WeeklySCH = [
     Class4Time: null,
   },
   {
-    id:2,
+    id: 2,
     WeedDay: "FRI",
     Class1Name: null,
     Class1Time: null,
@@ -128,4 +141,4 @@ export const WeeklySCH = [
   },
 ]
 
-export const Event = [1,10]
+export const Event = [1, 10]

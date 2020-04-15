@@ -7,12 +7,13 @@ import Subjects from "./pages/dashboard/subjects/SubjectsPage"
 import ProfilePage from "./pages/dashboard/profile/ProfilePage"
 import { logInInit } from "./initData"
 import CourseGrades from "./pages/GradePage/CourseGrades"
+import SelectStudent from "./pages/AdminPages/SelectStudent"
 
 export default class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      LogIn: false,
+      LogInNo: 0,
       pageID: 0,
       student: null,
     }
@@ -46,10 +47,12 @@ export default class App extends React.Component {
   }
 
   DisplayPage() {
-    if (this.state.pageID === 0) {
+    if (this.state.pageID === 0 && this.state.LogInNo === 1) {
       return <CalenderPage changePageID={this.changePageID.bind(this)} />
-    } else if (this.state.pageID === 1) {
+    } else if (this.state.pageID === 1 && this.state.LogInNo === 1) {
       return <Subjects />
+    } else if (this.state.pageID === 0 && this.state.LogInNo === 2) {
+      return <SelectStudent  />
     } else if (this.state.pageID === 2) {
       return <CourseGrades student={this.state.student} />
     } else if (this.state.pageID === 4) {
@@ -57,13 +60,13 @@ export default class App extends React.Component {
     }
   }
 
-  LogInCheck() {
+  LogInCheck(num) {
     this.setState({
-      LogIn: true,
+      LogInNo: num,
     })
   }
   render() {
-    if (this.state.LogIn === false) {
+    if (this.state.LogInNo === 0) {
       return (
         <Box
           id="Root"
@@ -80,7 +83,7 @@ export default class App extends React.Component {
           />
         </Box>
       )
-    } else {
+    } else if (this.state.LogInNo === 1) {
       return (
         <Box
           id="Root"
@@ -93,6 +96,28 @@ export default class App extends React.Component {
             <VerticalNav
               pageID={this.state.pageID}
               changePageID={this.changePageID.bind(this)}
+              client="student"
+            />
+          </Box>
+          <Box style={{ marginLeft: "109px", paddingTop: "119px" }}>
+            {this.DisplayPage()}
+          </Box>
+        </Box>
+      )
+    } else if (this.state.LogInNo === 2) {
+      return (
+        <Box
+          id="Root"
+          style={{
+            height: "100%",
+            backgroundColor: "#DCDCDC",
+          }}
+        >
+          <Box>
+            <VerticalNav
+              pageID={0}
+              changePageID={this.changePageID.bind(this)}
+              client="admin"
             />
           </Box>
           <Box style={{ marginLeft: "109px", paddingTop: "119px" }}>

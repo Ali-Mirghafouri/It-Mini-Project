@@ -30,7 +30,7 @@ export default class LogIn extends React.Component {
 
   handleSID(event) {
     let inp = event.target.value
-    inp = "b1801867" //DELETE THIS LINE
+    inp = "admin" //DELETE THIS LINE
     this.setState({
       SID: inp,
     })
@@ -38,13 +38,18 @@ export default class LogIn extends React.Component {
 
   handlePass(event) {
     let inp = event.target.value
-    inp = "123" //DELETE THIS LINE
+    inp = "admin" //DELETE THIS LINE
     this.setState({
       pass: inp,
     })
   }
 
   checkPass() {
+    if ("admin" === this.state.SID.toLowerCase()) {
+      this.props.LogInCheck(2)
+      return
+    }
+
     let student = "Student"
     const temp = JSON.parse(localStorage.getItem("userTable"))
     for (let i = 0; i < temp.length; i++) {
@@ -52,18 +57,17 @@ export default class LogIn extends React.Component {
         temp[i].studentId === this.state.SID.toLowerCase() &&
         temp[i].password === this.state.pass
       ) {
-        this.props.LogInCheck();
-        student = student + "b" + temp[i].studentId.slice(4, 8);
+        this.props.LogInCheck(1)
+        student = student + "b" + temp[i].studentId.slice(4, 8)
         this.props.handleStudent(student)
-        let id = temp[i].studentId;
-        console.log(Students[i]);
+        let id = temp[i].studentId
+        console.log(Students[i])
         // this.initData()
         let item = JSON.parse(localStorage.getItem(student))
         for (let i = 0; i < Students.length; i++) {
           if (id === Students[i].ID.toLowerCase() && item === null) {
             localStorage.setItem(student, JSON.stringify(Students[i]))
             // console.log(localStorage.getItem(student))
-            
           }
         }
         // localStorage.setItem(student, JSON.stringify(Students.student))

@@ -70,18 +70,19 @@ export const Students = [
       {
         Subject: "DIP222",
         description: "PROGRAMMING PRINCPLES",
+        mark: "4",
       },
       {
         Subject: "DIP1SAD01",
         description: "INTRODUCTION TO ANALYSIS & DESIGN",
         mark: "-1",
-        perc: "75"
+        perc: "75",
       },
       {
         Subject: "DIP1ITC01",
         description: "INTRODUCTION TO INFORMATION TECHNOLOGY",
         mark: "-1",
-        perc: "80"
+        perc: "80",
       },
     ],
     CourseProgress: [
