@@ -5,7 +5,7 @@ import VerticalNav from "./pages/dashboard/verticalNav/VerticalNav"
 import CalenderPage from "./pages/dashboard/calender/CalenderPage"
 import Subjects from "./pages/dashboard/subjects/SubjectsPage"
 import ProfilePage from "./pages/dashboard/profile/ProfilePage"
-import { logInInit } from "./initData"
+import { logInInit, Students } from "./initData"
 import CourseGrades from "./pages/GradePage/CourseGrades"
 import SelectStudent from "./pages/AdminPages/SelectStudent"
 
@@ -17,6 +17,8 @@ export default class App extends React.Component {
       pageID: 0,
       student: null,
     }
+
+    this.Students = []
   }
 
   handleStudent(inp) {
@@ -26,11 +28,22 @@ export default class App extends React.Component {
   }
 
   initData() {
+    // localStorage.clear()
     let item = localStorage.getItem("userTable")
-    // if (item === null) {
-    localStorage.clear()
-    localStorage.setItem("userTable", JSON.stringify(logInInit))
-    // }
+    if (item === null) {
+      localStorage.clear()
+      localStorage.setItem("userTable", JSON.stringify(logInInit))
+    } else {
+      // console.log("twee")
+      for (var a in localStorage) {
+        if (a.substr(0, 5) === "stude") {
+          if (a !== "studentbadmin" && a !== "userTable") {
+            this.Students.push(JSON.parse(localStorage[a]))
+          }
+        }
+      }
+      // console.log(this.Students)
+    }
   }
 
   componentDidMount() {
@@ -57,7 +70,7 @@ export default class App extends React.Component {
     } else if (this.state.pageID === 1 && this.state.LogInNo === 1) {
       return <Subjects student={this.state.student} />
     } else if (this.state.pageID === 0 && this.state.LogInNo === 2) {
-      return <SelectStudent />
+      return <SelectStudent Students={this.Students} />
     } else if (this.state.pageID === 2) {
       return <CourseGrades student={this.state.student} />
     } else if (this.state.pageID === 4) {

@@ -1,6 +1,6 @@
 import React from "react"
 import { Box, Typography } from "@material-ui/core"
-import { Students } from "../../initData"
+// import { Students } from "../../initData"
 
 const header = ["Subject Code", "Name", "Enrolement Status", "Grades"]
 
@@ -8,13 +8,12 @@ export default class SelectStudent extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      students: Students,
+      students: props.Students,
       selected: null,
       editbox: -1,
       inputtext: "",
     }
     this.handleChange = this.handleChange.bind(this)
-    // this.handleEditChange = this.handleEditChange.bind(this)
   }
 
   _handleKeyDown = (e) => {
@@ -38,14 +37,13 @@ export default class SelectStudent extends React.Component {
     // console.log(index)
     //  this.state.students[this.state.selected - 1].subjects[index].mark
     let temp = [...this.state.students]
-    temp[this.state.selected - 1].subjects[index].mark = event.target.value
+    temp[this.state.selected - 1].subjects[index].Grade = event.target.value
     this.setState({
       students: temp,
     })
   }
 
   edit(index) {
-    // console.log(index)
     this.setState({
       editbox: index,
     })
@@ -53,15 +51,15 @@ export default class SelectStudent extends React.Component {
 
   BuildRow(data, index) {
     let status = "COMPLETED"
-    let mark = parseFloat(data.mark)
+    let mark = parseFloat(data.Grade)
     let bgcolor = "#81FF81"
-    // console.log(this.state.editbox, " > ", index)
+
     if (mark < 0) {
       status = "CURRENT"
       bgcolor = "#E7FF81"
     }
     if (this.state.editbox === index) {
-      console.log(mark)
+      // console.log(mark)
       if (mark < 0) {
         status = "CURRENT"
         bgcolor = "#E7FF81"
@@ -122,9 +120,9 @@ export default class SelectStudent extends React.Component {
           </Typography>
         </Box>
         <Box
-          onClick={data.mark === "-1" ? () => this.edit(index) : null}
+          onClick={data.Grade === "-1" ? () => this.edit(index) : null}
           style={{
-            cursor: data.mark === "-1" ? "pointer" : "",
+            cursor: data.Grade === "-1" ? "pointer" : "",
             backgroundColor: "white",
             border: "1px solid black",
             padding: "5px",
@@ -132,8 +130,9 @@ export default class SelectStudent extends React.Component {
         >
           {this.state.editbox === index ? (
             <input
+              style={{ fontSize: "20px" }}
               type="tel"
-              value={this.state.students[this.state.selected - 1].subjects[index].mark}
+              value={this.state.students[this.state.selected - 1].subjects[index].Grade}
               onChange={(e) => this.handleEditChange(e, index)}
               onKeyDown={this._handleKeyDown}
             />
@@ -145,12 +144,45 @@ export default class SelectStudent extends React.Component {
                 padding: "5px",
               }}
             >
-              {data.mark !== "-1" ? data.mark : "?"}
+              {data.Grade !== "-1" ? data.Grade : "?"}
             </Typography>
           )}
         </Box>
       </React.Fragment>
     )
+  }
+
+  checkAdmin(val, index) {
+    if (val.Name !== "Admin") {
+      return (
+        <option key={index} value={index + 1} style={{ fontSize: "24px" }}>
+          {val.Name + " - " + val.ID}
+        </option>
+      )
+    }
+  }
+
+  updateLocalStorage() {
+    console.log(Object.entries(localStorage))
+    let student = "Student"
+    const temp = JSON.parse(localStorage.getItem("userTable"))
+    for (let i = 0; i < temp.length; i++) {
+      student = "studentb" + temp[i].studentId
+      let s1 = JSON.parse(localStorage.getItem(student))
+      console.log(student)
+      console.log(s1)
+      console.log(this.state.students[this.state.selected - 1])
+      // if (student !== "Studentb") {
+      if (s1.ID === this.state.students[this.state.selected - 1].ID) {
+        localStorage.removeItem(student)
+        localStorage.setItem(
+          student,
+          JSON.stringify(this.state.students[this.state.selected - 1])
+        )
+        return
+      }
+      // }
+    }
   }
 
   render() {
@@ -175,11 +207,7 @@ export default class SelectStudent extends React.Component {
             <option value="" style={{ fontSize: "24px" }}>
               Please Select
             </option>
-            {Students.map((val, index) => (
-              <option key={index} value={index + 1} style={{ fontSize: "24px" }}>
-                {val.Name + " - " + val.ID}
-              </option>
-            ))}
+            {this.state.students.map((val, index) => this.checkAdmin(val, index))}
           </select>
         </Box>
         {this.state.selected ? (
@@ -221,6 +249,24 @@ export default class SelectStudent extends React.Component {
                   )
                 )}
               </Box>
+            </Box>
+            <Box style={{ display: "flex", justifyContent: "center" }}>
+              <button
+                style={{
+                  width: "280px",
+                  height: "60px",
+                  color: "white",
+                  backgroundColor: "#00000050",
+                  border: "1px solid white",
+                  borderRadius: "30px",
+                  fontSize: "24px",
+                  marginBottom: "16px",
+                  marginTop: "120px",
+                }}
+                onClick={() => this.updateLocalStorage()}
+              >
+                Submit
+              </button>
             </Box>
           </React.Fragment>
         ) : null}

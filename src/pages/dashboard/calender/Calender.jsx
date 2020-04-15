@@ -1,12 +1,12 @@
-import React from "react";
-import { Box, Typography } from "@material-ui/core";
-import { Event } from "../../../dummyData/Dummy";
+import React from "react"
+import { Box, Typography } from "@material-ui/core"
+import { Event } from "../../../dummyData/Dummy"
 
 export default class Calender extends React.Component {
   constructor() {
-    super();
-    var d = new Date();
-    var dayInMonth = [];
+    super()
+    var d = new Date()
+    var dayInMonth = []
     var DayInMonth = [
       (dayInMonth[0] = "January"),
       (dayInMonth[1] = "February"),
@@ -20,12 +20,12 @@ export default class Calender extends React.Component {
       (dayInMonth[9] = "October"),
       (dayInMonth[10] = "November"),
       (dayInMonth[11] = "December"),
-    ];
-    var NameOfMonth = DayInMonth[d.getMonth()];
-    var Month = d.getMonth();
-    var Year = d.getFullYear();
-    var Day = d.getDay();
-    var DateNow = d.getDate();
+    ]
+    var NameOfMonth = DayInMonth[d.getMonth()]
+    var Month = d.getMonth()
+    var Year = d.getFullYear()
+    var Day = d.getDay()
+    var DateNow = d.getDate()
     this.state = {
       numDaysInMonth: [],
       month: Month,
@@ -34,49 +34,50 @@ export default class Calender extends React.Component {
       date: DateNow,
       Event: null,
       nameOfMonth: NameOfMonth,
-    };
+    }
   }
 
   gettingDate(year, month) {
-    return new Date(year, month, 0).getDate();
+    return new Date(year, month, 0).getDate()
   }
 
   handleEvent() {
-    const event = [];
+    const event = []
     for (let i = 0; i < Event.length; i++) {
       event.push({
         event: Event[i],
-      });
+      })
     }
     this.setState({
       Event: event,
-    });
+    })
   }
 
   handlenumofdays() {
-    const numofdays = [];
-    let index = this.gettingDate(this.state.month, this.state.year);
+    const numofdays = []
+    let index = this.gettingDate(this.state.month, this.state.year)
     for (let i = 0; i < index; i++) {
       numofdays.push({
         numofdays: i,
-      });
+      })
     }
     this.setState(
       {
         numDaysInMonth: numofdays,
-      },
-      () => console.log(this.state.numDaysInMonth)
-    );
+      }
+      // () => console.log(this.state.numDaysInMonth)
+    )
   }
 
   componentDidMount() {
-    this.handleEvent();
-    this.handlenumofdays();
+    this.handleEvent()
+    this.handlenumofdays()
   }
 
   displayDays(Today) {
-    return this.state.numDaysInMonth.map(({ numofdays }) => (
+    return this.state.numDaysInMonth.map(({ numofdays }, index) => (
       <Box
+        key={index}
         style={{
           width: "97px",
           height: "97px",
@@ -90,13 +91,16 @@ export default class Calender extends React.Component {
         <Typography
           style={{
             fontSize: "37px",
-            color: Event[0] === numofdays + 1 || Event[1] === numofdays + 1 ? "#FED11E" : "black",
+            color:
+              Event[0] === numofdays + 1 || Event[1] === numofdays + 1
+                ? "#FED11E"
+                : "black",
           }}
         >
           {numofdays + 1}
         </Typography>
       </Box>
-    ));
+    ))
   }
 
   render() {
@@ -237,6 +241,6 @@ export default class Calender extends React.Component {
           </Box>
         </Box>
       </Box>
-    );
+    )
   }
 }

@@ -10,6 +10,7 @@ import Alert from "@material-ui/lab/Alert"
 import Collapse from "@material-ui/core/Collapse"
 import IconButton from "@material-ui/core/IconButton"
 import CloseIcon from "@material-ui/icons/Close"
+// import { logInInit } from "../../initData"
 
 // w is for the width
 // h is for height
@@ -31,9 +32,28 @@ export default class LogIn extends React.Component {
     }
   }
 
+  findStudent(id) {
+    for (let i = 0; i < Students.length; i++) {
+      if (Students[i].ID === id) {
+        return Students[i]
+      }
+    }
+  }
+
   initData() {
-    localStorage.setItem("Students", JSON.stringify(Students))
-    console.log(localStorage.getItem("Students"))
+    const temp = JSON.parse(localStorage.getItem("userTable"))
+
+    let student = "Student"
+
+
+    for (let i = 0; i < temp.length; i++) {
+      student = "studentb" + temp[i].studentId
+      let item = JSON.parse(localStorage.getItem(student))
+      if (item === null) {
+        localStorage.setItem(student, JSON.stringify(this.findStudent(temp[i].studentId)))
+      }
+    }
+
   }
 
   handleEmailerr() {
@@ -80,26 +100,18 @@ export default class LogIn extends React.Component {
     let student = "Student"
     let id = ""
     const temp = JSON.parse(localStorage.getItem("userTable"))
+
     for (let i = 0; i < temp.length; i++) {
       if (
         temp[i].studentId === this.state.SID.toLowerCase() &&
         temp[i].password === this.state.pass
       ) {
-        // this.props.LogInCheck()
-        student = student + "b" + temp[i].studentId.slice(4, 8)
-        this.props.LogInCheck(1)
+        student = "studentb" + temp[i].studentId
         this.props.handleStudent(student)
-        let id = temp[i].studentId
-        console.log(Students[i])
-        let item = JSON.parse(localStorage.getItem(student))
-        for (let i = 0; i < Students.length; i++) {
-          if (id === Students[i].ID.toLowerCase() && item === null) {
-            localStorage.setItem(student, JSON.stringify(Students[i]))
-          }
-        }
         if ("admin" === this.state.SID.toLowerCase()) {
           this.props.LogInCheck(2)
-          return
+        } else {
+          this.props.LogInCheck(1)
         }
       } else {
         if (temp[i].studentId === this.state.SID.toLowerCase()) {
@@ -131,6 +143,7 @@ export default class LogIn extends React.Component {
           justifyContent: "center",
         }}
       >
+        {this.initData()}
         <Box
           style={{
             width: "100%",

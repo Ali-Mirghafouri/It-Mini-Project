@@ -93,6 +93,7 @@ function BuildRow(data) {
       </Box>
       {marks.map((val, index) => (
         <Box
+          key={index}
           style={{
             backgroundColor: colors[index],
             border: "1px solid black",
@@ -112,6 +113,22 @@ export default class CourseGrades extends React.Component {
     this.state = {
       student: JSON.parse(localStorage.getItem(this.props.student)),
     }
+  }
+
+  calculateCGPA() {
+    let CGPA = 0
+    let c = 0
+    for (let i = 0; i < this.state.student.subjects.length; i++) {
+      if (this.state.student.subjects[i].Grade >= 0) {
+        CGPA += parseFloat(this.state.student.subjects[i].Grade)
+        c += 1
+      }
+    }
+    CGPA = CGPA / c
+    CGPA = parseInt(CGPA * 100)
+    CGPA = CGPA / 100
+
+    return CGPA.toString()
   }
 
   render() {
@@ -168,7 +185,7 @@ export default class CourseGrades extends React.Component {
                 fontWeight: "700",
               }}
             >
-              3.50
+              {this.calculateCGPA()}
             </Typography>
           </Box>
         </Box>

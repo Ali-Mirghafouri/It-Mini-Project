@@ -1,10 +1,10 @@
-import React from "react";
-import { Box, Typography } from "@material-ui/core";
-import List from "../../../componants/List";
+import React from "react"
+import { Box, Typography } from "@material-ui/core"
+import List from "../../../componants/List"
 
 export default class SubjectDetail extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       ListOptions: [
         {
@@ -16,15 +16,14 @@ export default class SubjectDetail extends React.Component {
           Files: this.props.AccessSubject.Toturial,
         },
       ],
-    };
-
+    }
   }
 
   // handlePDF(Text, Files) {
-  //   if ( Text === "Tutorial") {
-  //     let toturial = ""
+  //   if ( Text === "Lecture") {
+  //     let Lecture = ""
   //     for (let index = 0; index < this.props.AccessSubject.Lectures.length; index++) {
-        
+  //         Lecture = this.props.AccessSubject.Lectures[index]
   //     }
   //   }
   // }
@@ -43,7 +42,7 @@ export default class SubjectDetail extends React.Component {
 
   componentDidMount() {
     // this.fillOptions()
-    console.log(this.state.ListOptions);
+    console.log(this.state.ListOptions)
   }
 
   render() {
@@ -69,24 +68,19 @@ export default class SubjectDetail extends React.Component {
             {this.props.AccessSubject.description}
           </Typography>
           <Typography>
-            <span style={{ fontSize: "35px", fontWeight: "bold" }}>
-              Lecturer:
-            </span>
-            <span style={{ fontSize: "30px" }}>
-              {this.props.AccessSubject.Lecturer}
-            </span>
+            <span style={{ fontSize: "35px", fontWeight: "bold" }}>Lecturer:</span>
+            <span style={{ fontSize: "30px" }}>{this.props.AccessSubject.Lecturer}</span>
           </Typography>
           <Typography>
             <span style={{ fontSize: "35px", fontWeight: "bold" }}>Email:</span>
-            <span style={{ fontSize: "30px" }}>
-              {this.props.AccessSubject.Email}
-            </span>
+            <span style={{ fontSize: "30px" }}>{this.props.AccessSubject.Email}</span>
           </Typography>
         </Box>
-        <Box style={{ display: "flex" }}  >
+        <Box style={{ display: "flex" }}>
           {this.state.ListOptions.map(({ Text, Files }) => (
-            <Box onClick={() => this.handlePDF(Text, Files)} >
-            <List Text={Text} Files={Files} />
+            // <Box onClick={() => this.handlePDF(Text, Files)} >
+            <Box>
+              <List Text={Text} Files={Files} />
             </Box>
           ))}
         </Box>
@@ -99,9 +93,21 @@ export default class SubjectDetail extends React.Component {
             alignItems: "flex-end",
           }}
         >
-          <button onClick={() => this.props.handleShowSubject() } style={{fontSize:"20px", border:"1px solid black", borderRadius:"18px", width:"150px", height:"50px", marginRight:"20px"}} >back</button>
+          <button
+            onClick={() => this.props.handleShowSubject()}
+            style={{
+              fontSize: "20px",
+              border: "1px solid black",
+              borderRadius: "18px",
+              width: "150px",
+              height: "50px",
+              marginRight: "20px",
+            }}
+          >
+            back
+          </button>
         </Box>
       </Box>
-    );
+    )
   }
 }

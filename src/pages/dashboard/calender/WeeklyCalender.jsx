@@ -1,17 +1,17 @@
-import React from "react";
-import { Box, Typography } from "@material-ui/core";
+import React from "react"
+import { Box, Typography } from "@material-ui/core"
 
 export default class WeeklyCalender extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      student: JSON.parse(localStorage.getItem(this.props.student))
-    };
+      student: JSON.parse(localStorage.getItem(this.props.student)),
+    }
   }
 
-componentDidMount() {
-  console.log(this.state.student)
-}
+  componentDidMount() {
+    console.log(this.state.student)
+  }
 
   displayCal(
     id,
@@ -35,9 +35,7 @@ componentDidMount() {
             border: "1px solid #DEDEDE",
           }}
         >
-          <Typography
-            style={{ fontSize: "60px", color: "white", textAlign: "center" }}
-          >
+          <Typography style={{ fontSize: "60px", color: "white", textAlign: "center" }}>
             {WeedDay}
           </Typography>
         </Box>
@@ -154,7 +152,7 @@ componentDidMount() {
           </Typography>
         </Box>
       </Box>
-    );
+    )
   }
 
   render() {
@@ -167,9 +165,7 @@ componentDidMount() {
           borderRadius: "40px",
         }}
       >
-        <Typography
-          style={{ textAlign: "center", fontSize: "60px", fontWeight: "bold" }}
-        >
+        <Typography style={{ textAlign: "center", fontSize: "60px", fontWeight: "bold" }}>
           WEEKLY SCHEDULE
         </Typography>
         <Box
@@ -179,19 +175,22 @@ componentDidMount() {
           }}
         >
           {this.state.student.subjectTime.map(
-            ({
-              id,
-              WeekDay,
-              Class1Name,
-              Class1Time,
-              Class2Name,
-              Class2Time,
-              Class3Name,
-              Class3Time,
-              Class4Name,
-              Class4Time,
-            }) => (
-              <Box>
+            (
+              {
+                id,
+                WeekDay,
+                Class1Name,
+                Class1Time,
+                Class2Name,
+                Class2Time,
+                Class3Name,
+                Class3Time,
+                Class4Name,
+                Class4Time,
+              },
+              index
+            ) => (
+              <Box key={index}>
                 {this.displayCal(
                   id,
                   WeekDay,
@@ -209,6 +208,6 @@ componentDidMount() {
           )}
         </Box>
       </Box>
-    );
+    )
   }
 }
