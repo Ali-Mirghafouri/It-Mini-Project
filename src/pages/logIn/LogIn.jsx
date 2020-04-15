@@ -10,7 +10,7 @@ import Alert from "@material-ui/lab/Alert"
 import Collapse from "@material-ui/core/Collapse"
 import IconButton from "@material-ui/core/IconButton"
 import CloseIcon from "@material-ui/icons/Close"
-// import { logInInit } from "../../initData"
+import { logInInit } from "../../initData"
 
 // w is for the width
 // h is for height
@@ -30,6 +30,7 @@ export default class LogIn extends React.Component {
       Emailerr: false,
       Passerr: false,
     }
+    this.Students =[]
   }
 
   findStudent(id) {
@@ -40,7 +41,25 @@ export default class LogIn extends React.Component {
     }
   }
 
+  componentDidMount(){
+    this.initData()
+  }
   initData() {
+    // localStorage.clear()
+    let item = localStorage.getItem("userTable")
+    if (item === null) {
+      localStorage.clear()
+      localStorage.setItem("userTable", JSON.stringify(logInInit))
+    } else {
+      // console.log("twee")
+      for (var a in localStorage) {
+        if (a.substr(0, 5) === "stude") {
+          if (a !== "studentbadmin" && a !== "userTable") {
+            this.Students.push(JSON.parse(localStorage[a]))
+          }
+        }
+      }
+    }
     const temp = JSON.parse(localStorage.getItem("userTable"))
 
     let student = "Student"
