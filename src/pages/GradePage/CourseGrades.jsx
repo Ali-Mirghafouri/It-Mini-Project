@@ -1,7 +1,5 @@
 import React from "react"
 import { Box, Typography } from "@material-ui/core"
-import HelpLogo from "../../assets/HelpLogo.png"
-import { Students } from "../../initData"
 
 const header = [
   "Subject Code",

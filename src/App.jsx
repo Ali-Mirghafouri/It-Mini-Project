@@ -7,13 +7,14 @@ import Subjects from "./pages/dashboard/subjects/SubjectsPage"
 import ProfilePage from "./pages/dashboard/profile/ProfilePage"
 import { logInInit } from "./initData"
 import CourseGrades from "./pages/GradePage/CourseGrades"
+import Pdf from './a.pdf';
 
 export default class App extends React.Component {
   constructor() {
     super()
     this.state = {
       LogIn: false,
-      pageID: 0,
+      pageID: 1,
       student: null,
     }
   }
@@ -85,6 +86,7 @@ export default class App extends React.Component {
             margin: "0px",
           }}
         >
+        {/* <a href={Pdf} target='_blank'>Test</a> */}
           <LogIn
             LogInCheck={this.LogInCheck.bind(this)}
             handleStudent={this.handleStudent.bind(this)}

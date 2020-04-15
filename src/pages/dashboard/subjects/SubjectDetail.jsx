@@ -12,12 +12,22 @@ export default class SubjectDetail extends React.Component {
           Files: this.props.AccessSubject.Lectures,
         },
         {
-          Text: "Toturial",
+          Text: "Tutorial",
           Files: this.props.AccessSubject.Toturial,
         },
       ],
     };
+
   }
+
+  // handlePDF(Text, Files) {
+  //   if ( Text === "Tutorial") {
+  //     let toturial = ""
+  //     for (let index = 0; index < this.props.AccessSubject.Lectures.length; index++) {
+        
+  //     }
+  //   }
+  // }
 
   // fillOptions() {
   //   let PropLec = this.props.AccessSubject.Lectures
@@ -73,9 +83,11 @@ export default class SubjectDetail extends React.Component {
             </span>
           </Typography>
         </Box>
-        <Box style={{ display: "flex" }}>
+        <Box style={{ display: "flex" }}  >
           {this.state.ListOptions.map(({ Text, Files }) => (
+            <Box onClick={() => this.handlePDF(Text, Files)} >
             <List Text={Text} Files={Files} />
+            </Box>
           ))}
         </Box>
         <Box

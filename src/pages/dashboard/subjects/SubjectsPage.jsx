@@ -41,7 +41,7 @@ export default class Subjects extends React.Component {
     if (this.state.showSubject === false) {
       return (
         <Box>
-          <Box style={{ padding: "88px 91px" }}>
+          <Box style={{ padding: "80px 85px" }}>
             <Typography style={{ fontSize: "73px", fontWeight: "bold" }}>
               MY SUBJECTS
             </Typography>
