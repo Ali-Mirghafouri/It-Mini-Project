@@ -1,6 +1,6 @@
 export const logInInit = [
-  { studentId: "1", password: "1" },
-  { studentId: "2", password: "2" },
+  { studentId: "b1801867", password: "123" },
+  { studentId: "b1801866", password: "123" },
   { studentId: "admin", password: "admin" },
 ]
 
@@ -11,7 +11,7 @@ export const Students = [
   },
   {
     Name: "Seyed Ali Mirghafouri",
-    ID: "1",
+    ID: "b1801867",
     Course: "Diploma in Information Technology",
     Email: "ali.mirghafouri@gmail.com",
     PhoneNumber: "0123456789",
@@ -197,7 +197,7 @@ export const Students = [
   },
   {
     Name: "Lisa",
-    ID: "2",
+    ID: "b1801866",
     Course: "Diploma in Information Technology",
     Email: "lisa@gmail.com",
     PhoneNumber: "0123456789",

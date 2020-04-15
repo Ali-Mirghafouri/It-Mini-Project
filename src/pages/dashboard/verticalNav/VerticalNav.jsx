@@ -47,6 +47,11 @@ export default class VerticalNav extends React.Component {
     }
   }
 
+  close() {
+    this.props.LogInCheck(0)
+    this.props.changePageID(0)
+  }
+
   render() {
     return (
       <Box>
@@ -100,7 +105,7 @@ export default class VerticalNav extends React.Component {
                   <Typography style={{ textAlign: "center" }}>
                     {this.state.student.Name}
                   </Typography>
-                  <Box onClick={() => this.props.LogInCheck()}>
+                  <Box onClick={() => this.close()}>
                     <Typography
                       style={{
                         textAlign: "center",

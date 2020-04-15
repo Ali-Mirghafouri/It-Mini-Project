@@ -118,6 +118,7 @@ export default class App extends React.Component {
               client="student"
               student={this.state.student}
               LogInCheck={this.LogInCheck.bind(this)}
+              changePageID={this.changePageID.bind(this)}
             />
           </Box>
           <Box style={{ marginLeft: "109px", paddingTop: "119px" }}>

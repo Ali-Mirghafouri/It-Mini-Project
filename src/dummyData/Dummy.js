@@ -23,11 +23,7 @@ export const VerticalNavCardInfo = [
     Option: "Grades",
     logo: <GradesIcon />,
   },
-  {
-    id: 3,
-    Option: "News & Events",
-    logo: <NewsAndEventsIcon />,
-  },
+
   {
     id: 4,
     Option: "Profile",
@@ -40,11 +36,6 @@ export const VerticalNavCardInfoAdmin = [
     id: 0,
     Option: "Student Grades",
     logo: <ProfileIcon />,
-  },
-  {
-    id: 1,
-    Option: "News & Events",
-    logo: <NewsAndEventsIcon />,
   },
 ]
 
